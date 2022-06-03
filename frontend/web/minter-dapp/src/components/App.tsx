@@ -1,9 +1,9 @@
 import '../scss/App.scss';
-import SignUp from './SignUp';
+import SignIn from './SignIn';
 
 function App() {
   return (
-    <SignUp/>
+    <SignIn/>
   );
 }
 
