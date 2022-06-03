@@ -1,0 +1,22 @@
+.container {
+    height: 100vh;  
+    min-height:100%;
+    max-width: 1100px;
+    background-image: url('../assets/maxja-desktop.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: auto;
+}
+
+.title {
+    color: white;
+}
+
+.sign-up {
+    display: grid;
+}
+
+.center-text {
+    color:white;
+    text-align: center;
+}
