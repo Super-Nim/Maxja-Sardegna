@@ -1,7 +1,7 @@
 import "../scss/LandingPage.scss";
 import maxja from "../assets/maxja-desktop.png";
 import { Button, Grid } from "@material-ui/core";
-import FormInputText from "./FormInputText";
+import FormInputText from "../FormInputText";
 import { useForm } from "react-hook-form";
 
 /// @notice ignore this for now, I was trying to get this centered with the image backgronud, but found a better solution with SignUp.tsx

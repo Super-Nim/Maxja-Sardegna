@@ -2,6 +2,7 @@ const fiatStyles = {
     title: {
       fontSize: "30px",
       fontWeight: "700",
+      color: 'white'
     },
     card: {
       padding: "20px",
