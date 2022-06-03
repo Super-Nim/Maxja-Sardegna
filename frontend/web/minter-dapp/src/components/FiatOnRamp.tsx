@@ -60,7 +60,7 @@ const FiatOnRamp = () => {
   let key = 0;
   return (
     <div>
-      <h1 style={styles.title}>💸Native Transactions</h1>
+      <h1 style={styles.title}>💸Fiat Transactions</h1>
       <Skeleton
         loading={!nativeTransactions || nativeTransactions.length === 0}
       >
