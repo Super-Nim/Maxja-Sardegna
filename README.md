@@ -1,6 +1,6 @@
 # maxja-sardegna
 
-## Project Aim
+## Project Aim
 
 Implement a Dapp that will enable users to purchase MATIC via their bank card and proceed to mint NFTs on the polygon network.
 
