@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useState } from "react";
-import { getEllipsisTxt } from "../helpers/format";
+import { getEllipsisTxt } from "../../helpers/format";
 // import Blockie from "../Blockie";
-import "./identicon.css";
+// import "./identicon.css";
 import { useMoralis } from "react-moralis";
 import { Skeleton } from "antd";
 

@@ -74,15 +74,17 @@ export const networkConfigs = {
   },
 };
 
-type chainId =  '0x1' | '0x3' | '0x4' | '0x89' | '0x13881';
-type wrappedNative = '0x1'| '0x89'; 
+/// @dev literal types for eth, ropsten, rinkeby, polygon, mumbai 
+export type ChainId =  '0x1' | '0x3' | '0x4' | '0x89' | '0x13881';
+///@dev eth, polygon
+export type WrappedNative = '0x1'| '0x89'; 
 
-export const getNativeByChain = (chain: chainId) =>
+export const getNativeByChain = (chain: ChainId) =>
   networkConfigs[chain]?.currencySymbol || "NATIVE";
 
-export const getChainById = (chain: chainId) => networkConfigs[chain]?.chainId || null;
+export const getChainById = (chain: ChainId) => networkConfigs[chain]?.chainId || null;
 
-export const getExplorer = (chain: chainId) => networkConfigs[chain]?.blockExplorerUrl;
+export const getExplorer = (chain: ChainId) => networkConfigs[chain]?.blockExplorerUrl;
 
-export const getWrappedNative = (chain: wrappedNative) =>
+export const getWrappedNative = (chain: WrappedNative) =>
   networkConfigs[chain]?.wrapped || null;

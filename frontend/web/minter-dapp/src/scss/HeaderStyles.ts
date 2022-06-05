@@ -1,3 +1,4 @@
+//TODO: make all ts styles consistent with exporting as React.CSSProperties individually OR as SCSS files
 const HeaderStyles = {
     content: {
       display: "flex",
