@@ -6,7 +6,7 @@ import "antd/dist/antd.css";
 import { Skeleton, Table } from "antd";
 import styles from "../scss/FiatStyles";
 
-const FiatOnRamp = () => {
+const NativeTransactions = () => {
   const { nativeTransactions, chainId } = useNativeTransactions('');
   const { Moralis } = useMoralis();
   useEffect(() => {
@@ -77,4 +77,4 @@ const FiatOnRamp = () => {
   );
 }
 
-export default FiatOnRamp;
+export default NativeTransactions;
