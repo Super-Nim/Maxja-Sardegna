@@ -1,16 +1,15 @@
 import { Layout } from "antd";
 import "../scss/App.scss";
-import Home from "./Home";
-import HeaderStyles from "../scss/HeaderStyles";
-import Account from "./Account/Account";
-import Chains from "./Chains/Chains";
+import Account from "../Account/Account";
+import FiatOnRamp from "../Account/FiatOnRamp";
+import { Grid } from "@material-ui/core";
 
 const { Header, Footer } = Layout;
 
 function App() {
   return (
     <>
-      <Header
+    <Header
         style={{
           position: "fixed",
           zIndex: 1,
@@ -32,15 +31,22 @@ function App() {
             alignItems: "center",
             fontSize: "15px",
             fontWeight: "600",
-            margin: "auto 0 auto auto",
-            marginRight: "20px"
+            margin: 'auto 0 auto auto',
+            marginRight: '20px'
           }}
         >
-          <Chains />
-          <Account />
+          <Account/>
         </div>
       </Header>
-      <Home />
+    <Grid
+    className="container"
+    container
+    justifyContent="center"
+    alignItems="center"
+>
+      
+      <FiatOnRamp />
+    </Grid>
     </>
   );
 }
