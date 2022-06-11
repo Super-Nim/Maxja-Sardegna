@@ -5,6 +5,7 @@ import './scss/index.scss';
 import { MoralisProvider } from 'react-moralis';
 import { ThemeProvider } from '@material-ui/styles';
 import theme from './scss/theme';
+import Home from './components/Home';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -18,7 +19,7 @@ root.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
     <MoralisProvider appId={APP_ID} serverUrl={SERVER_URL}>
-    <App />
+    <App/>
     </MoralisProvider>
     </ThemeProvider>
   </React.StrictMode>
