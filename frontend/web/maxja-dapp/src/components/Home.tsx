@@ -15,6 +15,7 @@ import GlobalStyles from '@mui/material/GlobalStyles';
 import Container from '@mui/material/Container';
 import { FormControlLabel, TextField } from '@mui/material';
 import '../scss/Home.scss';
+import Footer from './Footer';
 
 
 
@@ -41,7 +42,7 @@ const Home = () => {
         position="static"
         color="default"
         elevation={0}
-        sx={{ borderBottom: (theme) => `1px solid ${theme.palette.divider}` }}
+        sx={{ height: "120px", borderBottom: (theme) => `1px solid ${theme.palette.divider}` }}
       >
         <Toolbar sx={{ flexWrap: 'wrap' }}>
           <Typography variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
@@ -80,13 +81,15 @@ const Home = () => {
       </AppBar>
       {/* Hero unit */}
       {/* End hero unit */}
-      <Container maxWidth={false} component="main">
-        <Grid container spacing={5} alignItems="flex-end" justifyContent="center">        
+      <Grid container component="main" justifyContent="center" sx={{height: "70vh" }}>
+        {/* <Grid container spacing={5} alignItems="flex-end" justifyContent="center">         */}
             <Grid
               item
               xs={12}
-              sm={signupCard.title === 'Enterprise' ? 12 : 6}
+              sm={6}
               md={4}
+              sx={{display: "grid", justifyContent: "center", alignSelf: "center", height: "50vh"}}
+            
             >
               <Card sx={{ display: "grid", justifyItems: "center", width: "385px", borderRadius: "2em" }}>
                 <CardHeader
@@ -151,26 +154,17 @@ const Home = () => {
                   <Button
                     type="submit"
                     variant="contained"
-                    sx={{ borderRadius: "5em"}}
+                    sx={{ height: "60px", width: "160px", borderRadius: "5em"}}
                   >
                     Sign Up
                   </Button>
                 </CardActions>
               </Card>
             </Grid>
-        </Grid>
-      </Container>
+        {/* </Grid> */}
+      </Grid>
       {/* Footer */}
-      <Container
-        maxWidth={false}
-        component="footer"
-        sx={{
-          borderTop: (theme) => `1px solid ${theme.palette.divider}`,
-          mt: 8,
-          py: [3, 6],
-        }}
-      >
-      </Container>
+      <Footer/>
       {/* End footer */}
     </>
   );
