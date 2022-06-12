@@ -72,31 +72,14 @@ function Account() {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isAuthModalVisible, setIsAuthModalVisible] = useState(false);
 
-  const connectUserWallet = async () => {
-    console.log(user?._isLinked);
-      if (user?._isLinked("metmask") === true) {
-        enableWeb3();
-      }
-      else {
-        if (
-          window.confirm(
-            "Would you like to link this account to your user profile?"
-          )
-        ) {
-          setIsAuthModalVisible(true);
-        }
-      }
-    }
 
   useEffect(() => {
     console.log(isAuthenticated, account, user)
-  })
-  /// @notice if user's email exists, but no wallet address
-  // TODO: onClick => trigger cloud function to query database 
+  }, [])
   if (!isAuthenticated || !account) {
     return (
       <>
-        <div onClick={() => connectUserWallet()}>
+        <div onClick={() => setIsAuthModalVisible(true)}>
           <p style={textStyles}>Connect Wallet</p>
         </div>
         <MuiDialog open={isAuthModalVisible} onClose={() => setIsAuthModalVisible(false)}>
