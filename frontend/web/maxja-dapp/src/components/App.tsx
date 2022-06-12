@@ -1,10 +1,14 @@
 import '../scss/App.scss';
-import Home from './Home';
+import Footer from './Footer';
+import Header from './Header';
+import SignUp from './SignUp';
 
 function App() {
   return (
     <div className="App">
-      <Home/>
+      <Header/>
+      <SignUp/>
+      <Footer/>
     </div>
   );
 }

@@ -1,5 +1,3 @@
-import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
@@ -8,20 +6,16 @@ import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
 import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/material/Grid';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Link from '@mui/material/Link';
-import GlobalStyles from '@mui/material/GlobalStyles';
-import Container from '@mui/material/Container';
 import { FormControlLabel, TextField } from '@mui/material';
-import '../scss/Home.scss';
-import Footer from './Footer';
+import '../scss/Home.scss'
+import { useMoralis } from 'react-moralis';
+import { useEffect, useState } from 'react';
 
 
 
 const signupCard = 
   {
-    title: 'Welcome to the Maxja NFT Project',
+    title: 'Register for the Maxja NFT Airdrop!',
     description: [
       '20 users included',
       '10 GB of storage',
@@ -33,55 +27,45 @@ const signupCard =
   }
 
 
-const Home = () => {
+const SignUp = () => {
+
+  const { signup, user, setUserData, refetchUserData } = useMoralis();
+
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+
+
+  const usernameOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+      setUsername(event.target.value);
+  }
+  const emailOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+      setEmail(event.target.value);
+  }
+  const passwordOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+      setPassword(event.target.value);
+  }
+
+const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  event.preventDefault();
+  setUserData({
+    username: username,
+    email: email
+  })
+  console.log('user updated: ', user?.getUsername(), user?.getEmail(), user?._isLinked("metamask"));
+  
+};
+
+useEffect(() => {
+  console.log('User updated: ',  user?.getUsername(), user?.getEmail(), user?._isLinked("metamask"))
+
+}, [user])
+
   return (
     <>
-      <GlobalStyles styles={{ ul: { margin: 0, padding: 0, listStyle: 'none' } }} />
-      <CssBaseline />
-      <AppBar
-        position="static"
-        color="default"
-        elevation={0}
-        sx={{ height: "120px", borderBottom: (theme) => `1px solid ${theme.palette.divider}` }}
-      >
-        <Toolbar sx={{ flexWrap: 'wrap' }}>
-          <Typography variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
-            Company name
-          </Typography>
-          <nav>
-            <Link
-              variant="button"
-              color="text.primary"
-              href="#"
-              sx={{ my: 1, mx: 1.5 }}
-            >
-              Features
-            </Link>
-            <Link
-              variant="button"
-              color="text.primary"
-              href="#"
-              sx={{ my: 1, mx: 1.5 }}
-            >
-              Enterprise
-            </Link>
-            <Link
-              variant="button"
-              color="text.primary"
-              href="#"
-              sx={{ my: 1, mx: 1.5 }}
-            >
-              Support
-            </Link>
-          </nav>
-          <Button href="#" variant="outlined" sx={{ my: 1, mx: 1.5 }}>
-            Login
-          </Button>
-        </Toolbar>
-      </AppBar>
       {/* Hero unit */}
       {/* End hero unit */}
-      <Grid container component="main" justifyContent="center" sx={{height: "70vh" }}>
+      <Grid container component="form" onSubmit={handleSubmit} justifyContent="center" sx={{height: "70vh" }}>
         {/* <Grid container spacing={5} alignItems="flex-end" justifyContent="center">         */}
             <Grid
               item
@@ -116,12 +100,13 @@ const Home = () => {
               <Grid item xs={12} sm={12} md={12}>
                 <TextField
                   autoComplete="given-name"
-                  name="firstName"
+                  name="Name"
                   required
                   fullWidth
-                  id="firstName"
-                  label="First Name"
+                  id="Name"
+                  label="Name"
                   autoFocus
+                  onChange={usernameOnChange}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -132,17 +117,7 @@ const Home = () => {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="password"
-                  label="Password"
-                  type="password"
-                  id="password"
-                  autoComplete="new-password"
+                  onChange={emailOnChange}
                 />
               </Grid>
               </Grid>
@@ -156,18 +131,15 @@ const Home = () => {
                     variant="contained"
                     sx={{ height: "60px", width: "160px", borderRadius: "5em"}}
                   >
-                    Sign Up
+                    Register
                   </Button>
                 </CardActions>
               </Card>
             </Grid>
         {/* </Grid> */}
       </Grid>
-      {/* Footer */}
-      <Footer/>
-      {/* End footer */}
     </>
   );
 }
 
-export default Home;
+export default SignUp;

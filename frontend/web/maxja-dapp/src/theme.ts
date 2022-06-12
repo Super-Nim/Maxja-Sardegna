@@ -8,6 +8,15 @@ const theme = createTheme({
             borderRadius: 8,
           }, 
         }, 
+        MuiCardContent: {
+          root: {
+            padding: 0,
+            "&:last-child": {
+              paddingBottom: 0,
+           },
+          },
+        },
+      
       }, 
 
 });
