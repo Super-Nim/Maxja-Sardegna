@@ -31,7 +31,7 @@ const theme = createTheme();
 
 const SignUp = () => {
 
-    const { signup, user } = useMoralis();
+    const { signup, user, setUserData } = useMoralis();
 
     const [username, setUsername] = React.useState("");
     const [password, setPassword] = React.useState("");
@@ -54,6 +54,11 @@ const SignUp = () => {
     console.log('user created: ', user);
 
   };
+
+  React.useEffect(() => {
+    console.log('User created: ', user)
+
+  }, [user])
 
   return (
     <ThemeProvider theme={theme}>
