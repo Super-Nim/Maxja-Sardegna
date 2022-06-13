@@ -1,26 +1,27 @@
-// contracts/GameItem.sol
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.1;
 
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract MaxjaAirdrop is ERC721URIStorage {
+contract MaxjaAirdrop is ERC721URIStorage, Ownable {
     using Counters for Counters.Counter;
-    Counters.Counter private _tokenIds;
+    Counters.Counter public tokenIds;
 
     constructor() ERC721("MaxjaTest", "MXT") {}
 
-    function awardItem(address player, string memory tokenURI)
+    function sendNFT(address to, string memory tokenURI)
+        onlyOwner()
         public
         returns (uint256)
     {
-        _tokenIds.increment();
+        tokenIds.increment();
 
-        uint256 newItemId = _tokenIds.current();
-        _mint(player, newItemId);
-        _setTokenURI(newItemId, tokenURI);
+        uint256 nftId = tokenIds.current();
+        _mint(to, nftId);
+        _setTokenURI(nftId, tokenURI);
 
-        return newItemId;
+        return nftId;
     }
 }
