@@ -3,6 +3,7 @@ import type { MaxjaAirdrop } from "../typechain-types";
 import MaxjaArtifact from "../artifacts/contracts/MaxjaAirdrop.sol/MaxjaAirdrop.json";
 import { expect } from "chai";
 import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
+import { token } from "../typechain-types/@openzeppelin/contracts";
 const { deployContract } = waffle;
 
 describe("Maxja Airdrop", () => {
@@ -63,6 +64,14 @@ describe("Maxja Airdrop", () => {
       expect(tokenIdAfter).to.equal(1);
 
     });
+
+    it("should verify the address", async () => {
+      await contract.connect(owner).sendNFT(acc1Address, tokenURI);
+      const verified = await contract.isVerified(acc1Address);
+      expect(
+        verified
+      ).to.equal(true);
+    })
 
     it("it should should send NFT with correct URI", async () => {
       let iface = new ethers.utils.Interface(MaxjaArtifact.abi);

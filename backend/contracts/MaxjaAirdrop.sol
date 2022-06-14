@@ -8,6 +8,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 contract MaxjaAirdrop is ERC721URIStorage, Ownable {
     using Counters for Counters.Counter;
     Counters.Counter public tokenIds;
+    mapping(address => bool) public isVerified;
 
     constructor() ERC721("MaxjaTest", "MXT") {}
 
@@ -21,6 +22,7 @@ contract MaxjaAirdrop is ERC721URIStorage, Ownable {
         uint256 nftId = tokenIds.current();
         _mint(to, nftId);
         _setTokenURI(nftId, tokenURI);
+        isVerified[to] = true;
 
         return nftId;
     }
