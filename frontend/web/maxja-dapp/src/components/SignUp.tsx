@@ -8,8 +8,10 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Grid from "@mui/material/Grid";
 import { FormControlLabel, TextField } from "@mui/material";
 import "../scss/Home.scss";
+import backgroundMaxja from "../assets/backgroundMaxja.png";
 import { useMoralis } from "react-moralis";
 import { useEffect, useState } from "react";
+
 
 const signupCard = {
   title: "Register for the Maxja NFT Airdrop!",
