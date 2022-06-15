@@ -1,6 +1,7 @@
 import React from "react";
 import Navigation from "../components/Header";
 import Banner from "../components/Banner";
+import Footer from "../components/Footer";
 
 const CommunityPage = () => {
   return (
@@ -35,34 +36,37 @@ const CommunityPage = () => {
         <div className="row text-white">
           <div className="col-6" style={{ backgroundColor: "#741918" }}>
             <div className="p-10">
-              <img src="/images/inclusion.png" />
+              <img alt="inclusion" src="/images/inclusion.png" />
               <h4 className="mt-4">INCLUSION</h4>
               <div>
-                Anyone can be part of the MAXJA community. We welcome and
-                respect all human beings as unique beings.
-                <br />
-                <br />
-                <br /> One of our beliefs at MAXJA is that when we connect with
-                our essence, we are authentic. Each person with their color,
-                shape and energy.
+                <div>
+                  Anyone can be part of the MAXJA community. We welcome and
+                  respect all human beings as unique beings.
+                </div>
+                <div className="mt-5">
+                  One of our beliefs at MAXJA is that when we connect with our
+                  essence, we are authentic. Each person with their color, shape
+                  and energy.
+                </div>
               </div>
             </div>
           </div>
           <div className="col-6" style={{ backgroundColor: "#F69043" }}>
             <div className="p-10">
-              <img src="/images/expression.png" />
+              <img alt="expression" src="/images/expression.png" />
               <h4 className="mt-4">EXPRESSION</h4>
               <div>
-                "Maxja is a gathering that promotes free expression, respecting
-                the freedom of others."
-                <br />
-                <br />
-                <br />
-                Nothing in our reality is isolated, we live in a universe of
-                interconnections and everything is related to each other. This
-                is why from a holistic perspective we are a unity. No individual
-                can act alone, and our participation is necessary to create the
-                reality we want to live.
+                <div>
+                  "Maxja is a gathering that promotes free expression,
+                  respecting the freedom of others."
+                </div>
+                <div className="mt-5">
+                  Nothing in our reality is isolated, we live in a universe of
+                  interconnections and everything is related to each other. This
+                  is why from a holistic perspective we are a unity. No
+                  individual can act alone, and our participation is necessary
+                  to create the reality we want to live.
+                </div>
               </div>
             </div>
           </div>
@@ -80,17 +84,21 @@ const CommunityPage = () => {
             together we create, together we make it possible.
           </div>
           <div className="col-4">
-            <img src="/images/hand.png" />
+            <img alt="hand" src="/images/hand.png" />
           </div>
           <div className="col-4 m-auto">
-            The third principle is: <br />{" "}
-            <span style={{ fontWeight: "bold" }}>PARTICIPATION</span> <br />
-            <br /> Our community promotes a radical ethics of participation.{" "}
-            <br />
-            <br />
-            We believe that change, both personal and in society, can only be
-            achieved through the participation of the individual. That is why we
-            invite everyone in the community to take part in this creation.
+            The third principle is:
+            <div>
+              <span className="fw-bold">PARTICIPATION</span>
+            </div>
+            <div className="mt-4">
+              Our community promotes a radical ethics of participation.
+            </div>
+            <div className="mt-4">
+              We believe that change, both personal and in society, can only be
+              achieved through the participation of the individual. That is why
+              we invite everyone in the community to take part in this creation.
+            </div>
           </div>
         </div>
       </div>
@@ -102,19 +110,21 @@ const CommunityPage = () => {
       >
         <div className="row">
           <div className="col-4 m-auto p-5">
-            Trying to take care of every detail, we always seek to have the
-            least possible impact on the environment, as well as welcome all
-            proposals that create awareness on how to improve it. <br />
-            <br />
-            Our fifth principle is:
-            <br />
-            <span style={{ fontWeight: "bold" }}>LEAVE NO TRACE</span>
-            <br />
-            <br />
-            Our community respects the environment. We are committed to leaving
-            no physical trace of our activities wherever we congregate. We clean
-            up where we dirty and try, where possible, to leave these places
-            better than we found them.
+            <div>
+              Trying to take care of every detail, we always seek to have the
+              least possible impact on the environment, as well as welcome all
+              proposals that create awareness on how to improve it.
+            </div>
+            <div className="mt-3">Our fifth principle is:</div>
+            <div>
+              <span className="fw-bold">LEAVE NO TRACE</span>
+            </div>
+            <div className="mt-4">
+              Our community respects the environment. We are committed to
+              leaving no physical trace of our activities wherever we
+              congregate. We clean up where we dirty and try, where possible, to
+              leave these places better than we found them.
+            </div>
           </div>
           <div className="col-4 m-auto text-center p-5">
             <div>
@@ -124,6 +134,7 @@ const CommunityPage = () => {
           </div>
           <div className="col-4 m-auto">
             <img
+              alt="hand"
               src="/images/hand-right.png"
               className="float-end"
               style={{ marginRight: "-12px" }}
@@ -139,18 +150,26 @@ const CommunityPage = () => {
             <img src="/images/gift.png" />
           </div>
           <div className="col-8 p-5">
-            Our sixth principle is the <br />
-            <span style={{ fontWeight: "bold" }}>GIFT</span>
-            <br />
-            <br />
-            At MAXJA, every year, we co-create for a few days the experience of
-            living a culture radically different from the current one, for most
-            of us. <br /> <br /> For this to happen, our community promotes a
-            gift economy within the festival.
-            <br /> <br /> The value of a gift is unconditional. In fact, this
-            gift does not provide for the return or exchange.
-            <br /> <br /> Thus offering from the abundance of our heart, which
-            is infinite.
+            <div>Our sixth principle is the </div>
+            <div>
+              <span className="fw-bold">GIFT</span>
+            </div>
+            <div className="mt-3">
+              At MAXJA, every year, we co-create for a few days the experience
+              of living a culture radically different from the current one, for
+              most of us.
+            </div>
+            <div className="mt-3">
+              For this to happen, our community promotes a gift economy within
+              the festival.
+            </div>
+            <div className="mt-3">
+              The value of a gift is unconditional. In fact, this gift does not
+              provide for the return or exchange.
+            </div>
+            <div className="mt-3">
+              Thus offering from the abundance of our heart, which is infinite.
+            </div>
           </div>
         </div>
       </div>
@@ -160,7 +179,7 @@ const CommunityPage = () => {
         <div className="row text-white">
           <div className="col-6" style={{ backgroundColor: "#741918" }}>
             <div className="p-10">
-              <img src="/images/resources.png" />
+              <img alt="resources" src="/images/resources.png" />
               <h4 className="mt-4">
                 WE RELY ON OUR COMMON RESOURCES AND EFFORT
               </h4>
@@ -181,7 +200,7 @@ const CommunityPage = () => {
           </div>
           <div className="col-6" style={{ backgroundColor: "#F69043" }}>
             <div className="p-10">
-              <img src="/images/commerce.png" />
+              <img alt="commerce" src="/images/commerce.png" />
               <h4 className="mt-4">NO COMMERCE</h4>
               <div>
                 We choose for MAXJA to preserve the spirit of the gift, give
@@ -200,37 +219,7 @@ const CommunityPage = () => {
           </div>
         </div>
       </div>
-
-      <div className="container">
-        <div className="row p-4">
-          <div className="col-6 text-center">
-            <button
-              type="button"
-              className="btn btn-primary w-100 p-4"
-              style={{
-                background: "none",
-                border: "1px solid #B53848",
-                color: "black",
-              }}
-            >
-              JOIN US ON DISCORD
-            </button>
-          </div>
-          <div className="col-6 m-auto">
-            <button
-              type="button"
-              className="btn btn-primary w-100 p-4"
-              style={{
-                background: "none",
-                border: "1px solid #B53848",
-                color: "black",
-              }}
-            >
-              JOIN US ON TWITTER
-            </button>
-          </div>
-        </div>
-      </div>
+      <Footer />
     </>
   );
 };

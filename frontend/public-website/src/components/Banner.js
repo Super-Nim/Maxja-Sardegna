@@ -4,7 +4,7 @@ const Banner = ({ image, title, subtitle }) => {
   return (
     <div className="container-fluid p-0 overflow-hidden text-center">
       <div className="row">
-        <img className="img-fluid" src={image} />
+        <img alt="banner" className="img-fluid" src={image} />
         <div
           className="p-0 overflow-hidden"
           style={{

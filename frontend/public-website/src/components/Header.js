@@ -3,13 +3,17 @@ import "./Header.css";
 import { Link } from "react-router-dom";
 
 const Navigation = () => {
+  const launchApp = (e) => {
+    e.preventDefault();
+    window.open("https://maxja-project.nft");
+  };
   return (
     <nav className="navbar navbar-expand-lg navbar-light">
       <div className="container">
         <Link to="/" className="navbar-brand">
           <img src="/images/logo.png" height="60" alt="logo" />
         </Link>
-        <button
+        {/* <button
           className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
@@ -19,7 +23,7 @@ const Navigation = () => {
           aria-label="Toggle navigation"
         >
           <span className="navbar-toggler-icon"></span>
-        </button>
+        </button> */}
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
@@ -27,12 +31,12 @@ const Navigation = () => {
                 Community
               </Link>
             </li>
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <Link to="/tech-info" className="nav-link">
                 Tech Info
               </Link>
             </li>
-            <li className="nav-item">
+             <li className="nav-item">
               <Link to="/blog" className="nav-link">
                 Blog
               </Link>
@@ -41,7 +45,7 @@ const Navigation = () => {
               <Link to="/faq" className="nav-link">
                 FAQ
               </Link>
-            </li>
+            </li> */}
             <li className="nav-item">
               <Link to="/maxja-nft" className="nav-link">
                 MAXJA NFT
@@ -49,7 +53,9 @@ const Navigation = () => {
             </li>
           </ul>
           <form className="d-flex">
-            <button className="btn btn-primary launch-app">LAUNCH APP</button>
+            <button onClick={launchApp} className="btn btn-primary launch-app">
+              LAUNCH APP
+            </button>
           </form>
         </div>
       </div>
