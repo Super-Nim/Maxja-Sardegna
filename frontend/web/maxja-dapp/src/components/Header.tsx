@@ -11,6 +11,7 @@ import mintNFTH from "../assets/mintNFTH.png";
 import viewNFTsH from "../assets/viewNFTH.png";
 import { useState } from "react";
 import { useMoralis } from "react-moralis";
+import { NavLink } from "react-router-dom";
 
 const Header = () => {
 
@@ -39,6 +40,10 @@ const Header = () => {
       marginRight: "1px"
   }
 
+  const linkStyle = {
+    textDecoration: "none",
+  }
+
   return (
     <AppBar
       position="static"
@@ -55,17 +60,19 @@ const Header = () => {
 
         <nav>
           <Grid display="inline-flex" gap="50px" alignItems="center">
+          <NavLink to="/home" style={linkStyle}>
             <Link
               variant="button"
               color="text.primary"
-              href="#"
               sx={{  color: "black", "&:hover": {color: "#D26C68"}, display: "inline-flex", textDecoration: "none", fontSize: "18px", width: "fit-content"}}
               onMouseOver={() => setOnHomeHover(true)} 
               onMouseLeave={() => setOnHomeHover(false)}
             >
-              <img src={onHomeHover ? homeH : home} alt="home" style={navImage}/>
-              HOME
+            <img src={onHomeHover ? homeH : home} alt="home" style={navImage}/>home
             </Link>
+            </NavLink>
+          
+          <NavLink to="/buy-crypto" style={linkStyle}>
             <Link
               variant="button"
               color="text.primary"
@@ -77,6 +84,7 @@ const Header = () => {
               <img src={onBuyCryptoHover ? buyCryptoH : buycrypto} alt="home" style={navImage}/>
               BUY CRYPTO
             </Link>
+            </NavLink>
             <Link
               variant="button"
               color="text.primary"
