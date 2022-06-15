@@ -2,13 +2,13 @@ import { AppBar, Button, Toolbar, Typography, Link, Grid } from "@mui/material";
 import logo from "../assets/MaxjaLogoTransparent.png";
 import Account from "./Account/Account";
 import home from "../assets/home.png";
-import buycrypto from "../assets/buycrypto.png";
-import mintnft from "../assets/mintnft.png";
-import viewnfts from "../assets/viewnfts.png";
-import homeHover from "../assets/homeHover.png";
-import buyCryptoHover from "../assets/buyCryptoHover.png";
-import mintNFTHover from "../assets/mintNFTHover.png";
-import viewNFTHover from "../assets/viewNFTHover.png";
+import buycrypto from "../assets/buyCrypto.png";
+import mintNFT from "../assets/mintNFT.png";
+import viewNFTs from "../assets/viewNFT.png";
+import homeH from "../assets/homeH.png";
+import buyCryptoH from "../assets/buyCryptoH.png";
+import mintNFTH from "../assets/mintNFTH.png";
+import viewNFTsH from "../assets/viewNFTH.png";
 import { useState } from "react";
 import { useMoralis } from "react-moralis";
 
@@ -23,7 +23,7 @@ const Header = () => {
 
 
   const logoStyle = {
-    width: "15%",
+    width: "200px",
   };
 
   const navItemStyle = {
@@ -36,7 +36,6 @@ const Header = () => {
 
   const viewNFTImage = {
       height: "35%",
-      marginTop: "5px",
       marginRight: "1px"
   }
 
@@ -61,10 +60,10 @@ const Header = () => {
               color="text.primary"
               href="#"
               sx={{  color: "black", "&:hover": {color: "#D26C68"}, display: "inline-flex", textDecoration: "none", fontSize: "18px", width: "fit-content"}}
-            //   onMouseOver={() => setOnHomeHover(true)} 
-            //   onMouseLeave={() => setOnHomeHover(false)}
+              onMouseOver={() => setOnHomeHover(true)} 
+              onMouseLeave={() => setOnHomeHover(false)}
             >
-              <img src={onHomeHover ? homeHover : home} alt="home" style={navImage}/>
+              <img src={onHomeHover ? homeH : home} alt="home" style={navImage}/>
               HOME
             </Link>
             <Link
@@ -72,10 +71,10 @@ const Header = () => {
               color="text.primary"
               href="#"
               sx={{  color: "black", "&:hover": {color: "#D26C68"}, display: "inline-flex", textDecoration: "none", fontSize: "18px", width: "fit-content"}}
-            //   onMouseOver={() => setOnBuyCryptoHover(true)} 
-            //   onMouseLeave={() => setOnBuyCryptoHover(false)}
+              onMouseOver={() => setOnBuyCryptoHover(true)} 
+              onMouseLeave={() => setOnBuyCryptoHover(false)}
             >
-              <img src={onBuyCryptoHover ? buyCryptoHover : buycrypto} alt="home" style={navImage}/>
+              <img src={onBuyCryptoHover ? buyCryptoH : buycrypto} alt="home" style={navImage}/>
               BUY CRYPTO
             </Link>
             <Link
@@ -83,18 +82,24 @@ const Header = () => {
               color="text.primary"
               href="#"
               sx={{ color: "black", "&:hover": {color: "#D26C68"},  display: "inline-flex", textDecoration: "none", fontSize: "18px",width: "fit-content"}}
+              onMouseOver={() => setOnMintNFTHover(true)} 
+              onMouseLeave={() => setOnMintNFTHover(false)}
             >
-              <img src={mintnft} alt="home" style={navImage}/>
+              <img src={onMintNFTHover ? mintNFTH : mintNFT} alt="home" style={navImage}/>
               MINT NFT
             </Link>
             <Link
               variant="button"
               color="text.primary"
               href="#"
-              sx={{  color: "black", "&:hover": {color: "#D26C68"}, display: "inline-flex", textDecoration: "none", fontSize: "18px", width: "fit-content"}}
+              sx={{  color: "black", "&:hover": {color: "#D26C68"}, display: "inline-flex", textDecoration: "none", fontSize: "18px", width: "fit-content", alignItems: "baseline"}}
+              onMouseOver={() => setOnViewNFTsHover(true)} 
+              onMouseLeave={() => setOnViewNFTsHover(false)}
             >
-              <img src={viewnfts} alt="home" style={viewNFTImage}/>
+              <img src={onViewNFTsHover ? viewNFTsH : viewNFTs} alt="home" style={viewNFTImage}/>
+              <span>
               VIEW NFTs
+              </span>
             </Link>
           </Grid>
         </nav>
