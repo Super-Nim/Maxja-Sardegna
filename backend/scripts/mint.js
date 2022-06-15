@@ -1,3 +1,4 @@
+/// @notice list of REGISTERED users with name + email
 const addresses = [
     "0xBDE6a4c4b28046d37179a52266b792A67894BF88",
     "0x4c2eD3a67d771F2c6DC0FAE49999B12A12Dd168B",
