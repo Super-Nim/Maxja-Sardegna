@@ -2,7 +2,7 @@ import { AppBar, Button, Toolbar, Typography, Link, Grid } from "@mui/material";
 import logo from "../assets/MaxjaLogoTransparent.png";
 import Account from "./Account/Account";
 import home from "../assets/home.png";
-import buycrypto from "../assets/buyCrypto.png";
+import buyCrypto from "../assets/buyCrypto.png";
 import mintNFT from "../assets/mintNFT.png";
 import viewNFTs from "../assets/viewNFT.png";
 import homeH from "../assets/homeH.png";
@@ -81,7 +81,7 @@ const Header = () => {
               onMouseOver={() => setOnBuyCryptoHover(true)} 
               onMouseLeave={() => setOnBuyCryptoHover(false)}
             >
-              <img src={onBuyCryptoHover ? buyCryptoH : buycrypto} alt="home" style={navImage}/>
+              <img src={onBuyCryptoHover ? buyCryptoH : buyCrypto} alt="home" style={navImage}/>
               BUY CRYPTO
             </Link>
             </NavLink>
