@@ -8,10 +8,10 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Grid from "@mui/material/Grid";
 import { FormControlLabel, TextField } from "@mui/material";
 import "../scss/Home.scss";
-import "../scss/SignUp.scss";
 import backgroundMaxja from "../assets/backgroundMaxja.png";
 import { useMoralis } from "react-moralis";
 import { useEffect, useState } from "react";
+import Home from "./Home";
 
 
 const signupCard = {
@@ -27,7 +27,7 @@ const signupCard = {
 };
 
 const SignUp = () => {
-  const { signup, user, setUserData, refetchUserData } = useMoralis();
+  const { signup, user, setUserData, isAuthenticated, refetchUserData } = useMoralis();
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -64,12 +64,17 @@ const SignUp = () => {
       user?.getEmail(),
       user?._isLinked("metamask")
     );
+
+
+
   }, [user]);
 
   return (
     <>
       {/* Hero unit */}
       {/* End hero unit */}
+      {isAuthenticated && user?.getUsername() && user?.getEmail() ? 
+      <Home/> : 
       <Grid
         container
         component="form"
@@ -96,7 +101,7 @@ const SignUp = () => {
               display: "grid",
               justifyItems: "center",
               width: "385px",
-              borderRadius: "60px",
+              borderRadius: "60px !important",
             }}
           >
             <CardHeader
@@ -165,7 +170,12 @@ const SignUp = () => {
         </Grid>
         {/* </Grid> */}
       </Grid>
-    </>
+
+    
+    }
+  </>
+
+      
   );
 };
 

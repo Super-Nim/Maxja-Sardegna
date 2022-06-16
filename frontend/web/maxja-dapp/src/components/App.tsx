@@ -9,6 +9,7 @@ import Minter from './Minter';
 import { Grid } from "@mui/material";
 
 function App() {
+
   return (
     <BrowserRouter>
     <div className="App">
