@@ -8,6 +8,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Grid from "@mui/material/Grid";
 import { FormControlLabel, TextField } from "@mui/material";
 import "../scss/Home.scss";
+import "../scss/SignUp.scss";
 import backgroundMaxja from "../assets/backgroundMaxja.png";
 import { useMoralis } from "react-moralis";
 import { useEffect, useState } from "react";
@@ -88,13 +89,14 @@ const SignUp = () => {
             alignSelf: "center",
             height: "50vh",
           }}
+          className="card"
         >
           <Card
             sx={{
               display: "grid",
               justifyItems: "center",
               width: "385px",
-              borderRadius: "2em",
+              borderRadius: "60px",
             }}
           >
             <CardHeader

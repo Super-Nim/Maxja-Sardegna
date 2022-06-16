@@ -74,8 +74,15 @@ function Account() {
 
 
   useEffect(() => {
-    console.log(isAuthenticated, account, user)
-  }, [])
+    const refetch = async () => {
+      if (isAuthenticated) {
+        enableWeb3();
+        console.log(isAuthenticated, account, user)
+      }
+    }
+    refetch();
+
+  }, [isAuthenticated])
   if (!isAuthenticated || !account) {
     return (
       <>
