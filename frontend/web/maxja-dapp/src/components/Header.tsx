@@ -85,6 +85,7 @@ const Header = () => {
               BUY CRYPTO
             </Link>
             </NavLink>
+            <NavLink to="/mint-nft" style={linkStyle}>
             <Link
               variant="button"
               color="text.primary"
@@ -96,6 +97,7 @@ const Header = () => {
               <img src={onMintNFTHover ? mintNFTH : mintNFT} alt="home" style={navImage}/>
               MINT NFT
             </Link>
+            </NavLink>
             <Link
               variant="button"
               color="text.primary"
