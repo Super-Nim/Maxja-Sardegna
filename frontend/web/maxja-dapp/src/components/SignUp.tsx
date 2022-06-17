@@ -6,14 +6,24 @@ import CardContent from "@mui/material/CardContent";
 import CardHeader from "@mui/material/CardHeader";
 import CssBaseline from "@mui/material/CssBaseline";
 import Grid from "@mui/material/Grid";
-import { Dialog as MuiDialog, DialogTitle, FormControlLabel, TextField } from "@mui/material";
+import {
+  Dialog as MuiDialog,
+  DialogTitle,
+  FormControlLabel,
+  TextField,
+} from "@mui/material";
 import "../scss/Home.scss";
 import backgroundMaxja from "../assets/backgroundMaxja.png";
 import { useMoralis } from "react-moralis";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Home from "./Home";
-import Metamask from "../assets/metamaskWallet.png";
+import MetaMask from "../assets/metamaskWallet.png";
+import MetaMaskOnboarding from "@metamask/onboarding";
+import Onboarding from "@metamask/onboarding";
 
+const installMetaMaskCard = {
+  title: "Please Install MetaMask to use this Dapp"
+}
 
 const signupCard = {
   title: "Register for the Maxja NFT Airdrop!",
@@ -29,10 +39,20 @@ const signupCard = {
 
 const metamaskStyle = {
   cursor: "pointer",
-}
+};
 
 const SignUp = () => {
-  const { signup, account, user, setUserData, authenticate, isAuthenticated, refetchUserData } = useMoralis();
+  const {
+    signup,
+    account,
+    user,
+    setUserData,
+    authenticate,
+    isAuthenticated,
+    refetchUserData,
+  } = useMoralis();
+  const [isMetaMaskInstalled, setIsMetaMaskInstalled] = useState(false);
+  const onboarding = useRef<MetaMaskOnboarding>();
 
   const [isDialogVisible, setIsDialogVisible] = useState(false);
   const [username, setUsername] = useState("");
@@ -68,10 +88,6 @@ const SignUp = () => {
     }
   };
 
-  // const getUser = () => {
-  //   return i
-  // }
-
   useEffect(() => {
     console.log(
       "User updated: ",
@@ -79,136 +95,181 @@ const SignUp = () => {
       user?.getEmail(),
       user?._isLinked("metamask")
     );
-
-
-
   }, [user]);
+
+  useEffect(() => {
+    if (!onboarding.current) {
+      onboarding.current = new MetaMaskOnboarding();
+    }
+    
+    if (MetaMaskOnboarding.isMetaMaskInstalled()) {
+      setIsMetaMaskInstalled(true);
+    } else {
+      setIsMetaMaskInstalled(false);
+    }
+  }, []);
+
+  if (!isMetaMaskInstalled) {
+    return (
+      <Grid container justifyContent="center" alignContent="center" sx={{ height: "70vh" }}>
+      <Card
+        sx={{
+          display: "grid",
+          justifyItems: "center",
+          height: "50vh",
+          width: "385px",
+          borderRadius: "60px !important",
+        }}
+      >
+        <CardHeader
+                title={installMetaMaskCard.title}
+                titleTypographyProps={{ align: "center" }}
+                subheaderTypographyProps={{
+                  align: "center",
+                }}
+                sx={{}}
+        />
+        <img src={MetaMask} alt="MetaMask" style={metamaskStyle} onClick={() => onboarding?.current?.startOnboarding()}/>
+      </Card>
+    </Grid>
+    )
+  }
 
   return (
     <>
-      {/* Hero unit */}
-      {/* End hero unit */}
-      {isAuthenticated && user?.getUsername() && user?.getEmail() ? 
-      <Home/> : 
-      <Grid
-        container
-        component="form"
-        onSubmit={handleSubmit}
-        justifyContent="center"
-        sx={{ height: "70vh" }}
-      >
-        {/* <Grid container spacing={5} alignItems="flex-end" justifyContent="center">         */}
+      {isAuthenticated && user?.getUsername() && user?.getEmail() ? (
+        <Home />
+      ) : (
         <Grid
-          item
-          xs={12}
-          sm={6}
-          md={4}
-          sx={{
-            display: "grid",
-            justifyContent: "center",
-            alignSelf: "center",
-            height: "50vh",
-          }}
-          className="card"
+          container
+          component="form"
+          onSubmit={handleSubmit}
+          justifyContent="center"
+          sx={{ height: "70vh" }}
         >
-          <Card
+          {/* <Grid container spacing={5} alignItems="flex-end" justifyContent="center">         */}
+          <Grid
+            item
+            xs={12}
+            sm={6}
+            md={4}
             sx={{
               display: "grid",
-              justifyItems: "center",
-              width: "385px",
-              borderRadius: "60px !important",
+              justifyContent: "center",
+              alignSelf: "center",
+              height: "50vh",
             }}
+            className="card"
           >
-            <CardHeader
-              title={signupCard.title}
-              titleTypographyProps={{ align: "center" }}
-              subheaderTypographyProps={{
-                align: "center",
+            <Card
+              sx={{
+                display: "grid",
+                justifyItems: "center",
+                width: "385px",
+                borderRadius: "60px !important",
               }}
-              sx={{}}
-            />
-            <CardContent>
-              <Box
-                component="form"
-                sx={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "baseline",
-                  mb: 2,
+            >
+              <CardHeader
+                title={signupCard.title}
+                titleTypographyProps={{ align: "center" }}
+                subheaderTypographyProps={{
+                  align: "center",
                 }}
-              >
-                <Grid container spacing={2}>
-                  <Grid item xs={12} sm={12} md={12}>
-                    <TextField
-                      autoComplete="given-name"
-                      name="Name"
-                      required
-                      fullWidth
-                      id="Name"
-                      label="Name"
-                      autoFocus
-                      onChange={usernameOnChange}
-                    />
+                sx={{}}
+              />
+              <CardContent>
+                <Box
+                  component="form"
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "baseline",
+                    mb: 2,
+                  }}
+                >
+                  <Grid container spacing={2}>
+                    <Grid item xs={12} sm={12} md={12}>
+                      <TextField
+                        autoComplete="given-name"
+                        name="Name"
+                        required
+                        fullWidth
+                        id="Name"
+                        label="Name"
+                        autoFocus
+                        onChange={usernameOnChange}
+                      />
+                    </Grid>
+                    <Grid item xs={12}>
+                      <TextField
+                        required
+                        fullWidth
+                        id="email"
+                        label="Email Address"
+                        name="email"
+                        autoComplete="email"
+                        onChange={emailOnChange}
+                      />
+                    </Grid>
                   </Grid>
-                  <Grid item xs={12}>
-                    <TextField
-                      required
-                      fullWidth
-                      id="email"
-                      label="Email Address"
-                      name="email"
-                      autoComplete="email"
-                      onChange={emailOnChange}
-                    />
-                  </Grid>
-                </Grid>
-              </Box>
-            </CardContent>
-            <CardActions>
-              <Button
-                type="submit"
-                variant="contained"
-                sx={{
-                  background: "#F69043",
-                  "&:hover": {
-                    background: "#f7984f",
-                  },
-                  height: "60px",
-                  width: "160px",
-                  borderRadius: "5em",
-                }}
-              >
-                Register
-              </Button>
-            </CardActions>
-          </Card>
-        </Grid>
-        <MuiDialog open={isDialogVisible} onClose={() => setIsDialogVisible(false)}>
-          <Grid justifyItems="center" sx={{ textAlign: "center", height: "20vh", width: "30vw"}}>
-          <DialogTitle>
-         Please Connect your MetaMask Wallet before registering
-          </DialogTitle>
-          <img src={Metamask} style={metamaskStyle} alt="Metamask" onClick={async () => {
-            try {
-              await authenticate();
-              window.localStorage.setItem("metamask", "injected");
-              setIsDialogVisible(false);
-              console.log('USER authenticated via sign up: ', user, isAuthenticated, account)
-            } catch (e) {
-              console.error(e);
-            }
-           }}/>
-
+                </Box>
+              </CardContent>
+              <CardActions>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  sx={{
+                    background: "#F69043",
+                    "&:hover": {
+                      background: "#f7984f",
+                    },
+                    height: "60px",
+                    width: "160px",
+                    borderRadius: "5em",
+                  }}
+                >
+                  Register
+                </Button>
+              </CardActions>
+            </Card>
           </Grid>
-        </MuiDialog>
-        {/* </Grid> */}
-      </Grid>
-
-    
-    }
-  </>
-
-      
+          <MuiDialog
+            open={isDialogVisible}
+            onClose={() => setIsDialogVisible(false)}
+          >
+            <Grid
+              justifyItems="center"
+              sx={{ textAlign: "center", height: "20vh", width: "30vw" }}
+            >
+              <DialogTitle>
+                Please Connect your MetaMask Wallet before registering
+              </DialogTitle>
+              <img
+                src={MetaMask}
+                style={metamaskStyle}
+                alt="MetaMask"
+                onClick={async () => {
+                  try {
+                    await authenticate();
+                    window.localStorage.setItem("metamask", "injected");
+                    setIsDialogVisible(false);
+                    console.log(
+                      "USER authenticated via sign up: ",
+                      user,
+                      isAuthenticated,
+                      account
+                    );
+                  } catch (e) {
+                    console.error(e);
+                  }
+                }}
+              />
+            </Grid>
+          </MuiDialog>
+          {/* </Grid> */}
+        </Grid>
+      )}
+    </>
   );
 };
 
