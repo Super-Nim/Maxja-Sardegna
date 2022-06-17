@@ -69,8 +69,8 @@ function Account() {
     enableWeb3,
     setUserData
   } = useMoralis();
-  const [isModalVisible, setIsModalVisible] = useState(false);
-  const [isAuthModalVisible, setIsAuthModalVisible] = useState(false);
+  const [isDialogVisible, setIsDialogVisible] = useState(false);
+  const [isAuthDialogVisible, setIsAuthDialogVisible] = useState(false);
 
 
   useEffect(() => {
@@ -86,10 +86,21 @@ function Account() {
   if (!isAuthenticated || !account) {
     return (
       <>
-        <div onClick={() => setIsAuthModalVisible(true)}>
+        <div onClick={async () => {
+            try {
+              await authenticate();
+              window.localStorage.setItem("metamask", "injected");
+              setIsDialogVisible(false);
+              console.log('USER authenticated via sign up: ', user, isAuthenticated, account)
+            } catch (e) {
+              console.error(e);
+            }
+           }}>
           <p style={textStyles}>Connect Wallet</p>
         </div>
-        <MuiDialog open={isAuthModalVisible} onClose={() => setIsAuthModalVisible(false)}>
+        {/* 
+        Code for multiple wallets, will stick to MetaMask for now
+        <MuiDialog open={isAuthDialogVisible} onClose={() => setIsAuthDialogVisible(false)}>
           <div>
             <DialogTitle sx={{ textAlign: "center" }}>
               Connect Wallet
@@ -104,7 +115,7 @@ function Account() {
                       // TODO: this may break/cause issues as I removed params, confirm later once implemented
                       await authenticate(connectorId as AuthenticateOptions);
                       window.localStorage.setItem("connectorId", connectorId);
-                      setIsAuthModalVisible(false);
+                      setIsAuthDialogVisible(false);
                       console.log('wallet logged in: ', user)
                     } catch (e) {
                       console.error(e);
@@ -117,59 +128,15 @@ function Account() {
               ))}
             </div>
           </div>
-        </MuiDialog>
-        {/* <Modal
-          visible={isAuthModalVisible}
-          footer={null}
-          onCancel={() => setIsAuthModalVisible(false)}
-          bodyStyle={{
-            padding: "15px",
-            fontSize: "17px",
-            fontWeight: "500",
-          }}
-          style={{ fontSize: "16px", fontWeight: "500" }}
-          width="340px"
-        >
-          <div
-            style={{
-              padding: "10px",
-              display: "flex",
-              justifyContent: "center",
-              fontWeight: "700",
-              fontSize: "20px",
-            }}
-          >
-            Connect Wallet
-          </div>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr" }}>
-            {connectors.map(({ title, icon, connectorId }, key) => (
-              <div
-                style={connectorStyles}
-                key={key}
-                onClick={async () => {
-                  try {
-                    // TODO: this may break/cause issues as I removed params, confirm later once implemented
-                    await authenticate(connectorId as AuthenticateOptions);
-                    window.localStorage.setItem("connectorId", connectorId);
-                    setIsAuthModalVisible(false);
-                  } catch (e) {
-                    console.error(e);
-                  }
-                }}
-              >
-                <img src={icon} alt={title} style={iconStyles} />
-                <Text style={{ fontSize: "14px" }}>{title}</Text>
-              </div>
-            ))}
-          </div>
-        </Modal> */}
+        </MuiDialog> */}
+       
       </>
     );
   }
 
   return (
     <>
-      <Card onClick={() => setIsModalVisible(true)} sx={{borderRadius: "60px !important", cursor: "pointer"}}>
+      <Card onClick={() => setIsDialogVisible(true)} sx={{borderRadius: "60px !important", cursor: "pointer"}}>
         <CardContent sx={{display: "flex", alignItems: "center",  pb: 0, "&:last-child": { pb: "10px"}, padding: "10px",}}> 
           <Address
             avatar="left"
@@ -179,7 +146,7 @@ function Account() {
           />
         </CardContent>
       </Card>
-      <MuiDialog open={isModalVisible} onClose={() => setIsModalVisible(false)} sx={{}}>
+      <MuiDialog open={isDialogVisible} onClose={() => setIsDialogVisible(false)} sx={{}}>
         <Grid justifyContent="center" sx={{width: "30vw"}}>
           <DialogTitle>
             Account
@@ -219,7 +186,7 @@ function Account() {
           onClick={async () => {
             await logout();
             window.localStorage.removeItem("connectorId");
-            setIsModalVisible(false);
+            setIsDialogVisible(false);
           }}
         >
           Disconnect Wallet
@@ -227,16 +194,16 @@ function Account() {
         </Box>
         </Grid>
       </MuiDialog>
-      {/* <div style={accountStyles} onClick={() => setIsModalVisible(true)}>
+      {/* <div style={accountStyles} onClick={() => setIsDialogVisible(true)}>
         <p style={{ marginRight: "5px",  color: "#21BF96"}}>
           {getEllipsisTxt(account, 6)}
         </p>
         {/* <Blockie currentWallet scale={3} /> 
       </div>
-      <Modal
-        visible={isModalVisible}
+      <Dialog
+        visible={isDialogVisible}
         footer={null}
-        onCancel={() => setIsModalVisible(false)}
+        onCancel={() => setIsDialogVisible(false)}
         bodyStyle={{
           padding: "15px",
           fontSize: "17px",
@@ -283,12 +250,12 @@ function Account() {
           onClick={async () => {
             await logout();
             window.localStorage.removeItem("connectorId");
-            setIsModalVisible(false);
+            setIsDialogVisible(false);
           }}
         >
           Disconnect Wallet
         </Button>
-      </Modal> */}
+      </Dialog> */}
     </>
   );
 }

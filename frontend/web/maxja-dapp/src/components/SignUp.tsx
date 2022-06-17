@@ -6,12 +6,13 @@ import CardContent from "@mui/material/CardContent";
 import CardHeader from "@mui/material/CardHeader";
 import CssBaseline from "@mui/material/CssBaseline";
 import Grid from "@mui/material/Grid";
-import { FormControlLabel, TextField } from "@mui/material";
+import { Dialog as MuiDialog, DialogTitle, FormControlLabel, TextField } from "@mui/material";
 import "../scss/Home.scss";
 import backgroundMaxja from "../assets/backgroundMaxja.png";
 import { useMoralis } from "react-moralis";
 import { useEffect, useState } from "react";
 import Home from "./Home";
+import Metamask from "../assets/metamaskWallet.png";
 
 
 const signupCard = {
@@ -26,9 +27,14 @@ const signupCard = {
   buttonVariant: "contained",
 };
 
-const SignUp = () => {
-  const { signup, user, setUserData, isAuthenticated, refetchUserData } = useMoralis();
+const metamaskStyle = {
+  cursor: "pointer",
+}
 
+const SignUp = () => {
+  const { signup, account, user, setUserData, authenticate, isAuthenticated, refetchUserData } = useMoralis();
+
+  const [isDialogVisible, setIsDialogVisible] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
@@ -45,17 +51,26 @@ const SignUp = () => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setUserData({
-      username: username,
-      email: email,
-    });
-    console.log(
-      "user updated: ",
-      user?.getUsername(),
-      user?.getEmail(),
-      user?._isLinked("metamask")
-    );
+    // try !account if isAuthenticated doesnt work
+    if (!isAuthenticated) {
+      setIsDialogVisible(true);
+    } else {
+      setUserData({
+        username: username,
+        email: email,
+      });
+      console.log(
+        "user updated: ",
+        user?.getUsername(),
+        user?.getEmail(),
+        user?._isLinked("metamask")
+      );
+    }
   };
+
+  // const getUser = () => {
+  //   return i
+  // }
 
   useEffect(() => {
     console.log(
@@ -168,6 +183,24 @@ const SignUp = () => {
             </CardActions>
           </Card>
         </Grid>
+        <MuiDialog open={isDialogVisible} onClose={() => setIsDialogVisible(false)}>
+          <Grid justifyItems="center" sx={{ textAlign: "center", height: "20vh", width: "30vw"}}>
+          <DialogTitle>
+         Please Connect your MetaMask Wallet before registering
+          </DialogTitle>
+          <img src={Metamask} style={metamaskStyle} alt="Metamask" onClick={async () => {
+            try {
+              await authenticate();
+              window.localStorage.setItem("metamask", "injected");
+              setIsDialogVisible(false);
+              console.log('USER authenticated via sign up: ', user, isAuthenticated, account)
+            } catch (e) {
+              console.error(e);
+            }
+           }}/>
+
+          </Grid>
+        </MuiDialog>
         {/* </Grid> */}
       </Grid>
 

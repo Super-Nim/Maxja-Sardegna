@@ -10,7 +10,6 @@ const Home = () => {
 
   const navigate = useNavigate();
 
-
   type cardProps = {
     title: string,
     image: string,
