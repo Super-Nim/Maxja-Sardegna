@@ -29,7 +29,7 @@ const Minter = () => {
         justifyItems: "center",
         height: "600px",
         width: "500px",
-        borderRadius: "60px",
+        borderRadius: "60px !important",
       }}
     >
       <Grid display="flex" alignContent="center">

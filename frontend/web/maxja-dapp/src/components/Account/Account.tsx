@@ -9,13 +9,13 @@ import { connectors } from "../../helpers/connectors";
 import { ChainId } from "../../helpers/networks";
 import { AuthenticateOptions } from "react-moralis/lib/hooks/core/useMoralis/_useMoralisAuth";
 import {
+  Card,
   CardContent,
   Dialog as MuiDialog,
   DialogProps as MuiDialogProps,
   DialogTitle,
   Grid,
 } from "@mui/material";
-import { Card } from "@material-ui/core";
 import Typography from "@mui/material/Typography";
 import Button from '@mui/material/Button';
 import { Box } from "@mui/system";
@@ -74,8 +74,15 @@ function Account() {
 
 
   useEffect(() => {
-    console.log(isAuthenticated, account, user)
-  }, [])
+    const refetch = async () => {
+      if (isAuthenticated) {
+        enableWeb3();
+        console.log(isAuthenticated, account, user)
+      }
+    }
+    refetch();
+
+  }, [isAuthenticated])
   if (!isAuthenticated || !account) {
     return (
       <>
@@ -162,7 +169,7 @@ function Account() {
 
   return (
     <>
-      <Card onClick={() => setIsModalVisible(true)}>
+      <Card onClick={() => setIsModalVisible(true)} sx={{borderRadius: "60px !important", cursor: "pointer"}}>
         <CardContent sx={{display: "flex", alignItems: "center",  pb: 0, "&:last-child": { pb: "10px"}, padding: "10px",}}> 
           <Address
             avatar="left"
