@@ -40,7 +40,7 @@ contract MaxjaMinter is ERC1155, Ownable {
         return tokenAddress.balanceOf(msg.sender);
     }
 
-    function getWhitelistLength() external view returns (uint256) {
+    function getWhitelistLength() external view returns (uint16) {
         return whitelist.length;
     }
 
