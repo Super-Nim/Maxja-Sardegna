@@ -20,6 +20,7 @@ import Home from "./Home";
 import MetaMask from "../assets/metamaskWallet.png";
 import MetaMaskOnboarding from "@metamask/onboarding";
 import Onboarding from "@metamask/onboarding";
+import { ToastContainer, toast } from 'react-toastify';
 
 const installMetaMaskCard = {
   title: "Please Install MetaMask to use this Dapp"
@@ -86,6 +87,7 @@ const SignUp = () => {
         user?._isLinked("metamask")
       );
     }
+    toast.success("Successfully registered!")
   };
 
   useEffect(() => {
@@ -231,6 +233,7 @@ const SignUp = () => {
                   Register
                 </Button>
               </CardActions>
+              <ToastContainer/>
             </Card>
           </Grid>
           <MuiDialog

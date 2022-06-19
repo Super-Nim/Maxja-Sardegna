@@ -10,11 +10,13 @@ import "@openzeppelin/contracts/utils/Counters.sol";
 contract MaxjaMinter is ERC1155, Ownable {
    using Counters for Counters.Counter;
     IERC20 public tokenAddress;
-    // uint256 public rate = 1 * 10 ** 18;
-    uint256 public rate = 100;
+    string public name = "Maxja Ticket";
+    string public symbol = "MXT";
+    // TODO: confirm the rate amount in test file, set to 100 for mainnet
+    uint256 public rate = 1 * 10 ** 18;
+    // uint256 public rate = 100;
     address[] public whitelist;
     Counters.Counter private _tokenIdCounter;
-    IERC20 public user;
 
 
     constructor(address _tokenAddress, address[] memory _whitelist) ERC1155("https://gateway.pinata.cloud/ipfs/bafybeifhefluv354htkihbwlj2tnwkocote5p4ci4eqvdiffyongwcf524/testMetadata.json") {
@@ -30,6 +32,22 @@ contract MaxjaMinter is ERC1155, Ownable {
         _mint(msg.sender, tokenId, 1, "");
     }
 
+    function getAllowance() external view returns (uint256) {
+        return tokenAddress.allowance(msg.sender, address(this));
+    }
+
+    function getUsdcBalance() external view returns (uint256) {
+        return tokenAddress.balanceOf(msg.sender);
+    }
+
+    function getWhitelistLength() external view returns (uint256) {
+        return whitelist.length();
+    }
+
+    function withdrawUsdc() public onlyOwner {
+        tokenAddress.transfer(msg.sender, tokenAddress.balanceOf(address(this)));
+    }
+
     function _isWhitelisted(address[] memory _whitelist) internal view returns(bool) {
         for (uint16 i = 0; i < _whitelist.length; i++) {
             if (_whitelist[i] == msg.sender) {
@@ -38,15 +56,5 @@ contract MaxjaMinter is ERC1155, Ownable {
         }
         return false;
     }
-    function withdrawUsdc() public onlyOwner {
-        tokenAddress.transfer(msg.sender, tokenAddress.balanceOf(address(this)));
-    }
 
-    function getAllowance() external view returns (uint256) {
-        return tokenAddress.allowance(msg.sender, address(this));
-    }
-
-    function getUsdcBalance() external view returns (uint256) {
-        return tokenAddress.balanceOf(msg.sender);
-    }
 }
