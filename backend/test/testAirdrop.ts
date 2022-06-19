@@ -3,15 +3,13 @@ import type { MaxjaAirdrop } from "../typechain-types";
 import MaxjaArtifact from "../artifacts/contracts/MaxjaAirdrop.sol/MaxjaAirdrop.json";
 import { expect } from "chai";
 import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
-import { token } from "../typechain-types/@openzeppelin/contracts";
 import { deployContract } from "ethereum-waffle";
 
-xdescribe("Maxja Airdrop", () => {
+describe("Maxja Airdrop", () => {
   let contract: MaxjaAirdrop;
   let owner: SignerWithAddress;
   let acc1: SignerWithAddress;
   let acc2: SignerWithAddress;
-  let ownerAddress: string;
   let acc1Address: string;
   let acc2Address: string;
   let tokenURI = "https://gateway.pinata.cloud/ipfs/QmXm7M7RfQBGEvoH8cAAQ8myoBwhn9R7j3qdrRZohakAdD";
@@ -22,20 +20,19 @@ xdescribe("Maxja Airdrop", () => {
       owner,
       MaxjaArtifact
     )) as MaxjaAirdrop;
-    ownerAddress = owner.address;
     acc1Address = acc1.address
     acc2Address = acc2.address
   });
 
   describe("Setup", () => {
-    it("should be named MaxjaTest", async () => {
+    it("should be named Mandala", async () => {
       let name = await contract.name();
-      expect(name).to.equal("MaxjaTest");
+      expect(name).to.equal("Mandala");
     });
   
-    it("should have the symbol MXT", async () => {
+    it("should have the symbol MND", async () => {
       let symbol = await contract.symbol();
-      expect(symbol).to.equal("MXT");
+      expect(symbol).to.equal("MND");
     })  
 
   })

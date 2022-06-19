@@ -34,5 +34,5 @@ export type { IERC165 } from "./@openzeppelin/contracts/utils/introspection/IERC
 export { IERC165__factory } from "./factories/@openzeppelin/contracts/utils/introspection/IERC165__factory";
 export type { MaxjaAirdrop } from "./contracts/MaxjaAirdrop";
 export { MaxjaAirdrop__factory } from "./factories/contracts/MaxjaAirdrop__factory";
-export type { Minter } from "./contracts/MaxjaMinter.sol/Minter";
-export { Minter__factory } from "./factories/contracts/MaxjaMinter.sol/Minter__factory";
+export type { MaxjaMinter } from "./contracts/MaxjaMinter";
+export { MaxjaMinter__factory } from "./factories/contracts/MaxjaMinter__factory";

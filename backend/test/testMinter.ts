@@ -1,7 +1,7 @@
 import { ethers, waffle, hardhatArguments } from "hardhat";
 const hre = require("hardhat");
-import type { Minter } from "../typechain-types";
-import MinterArtifact from "../artifacts/contracts/MaxjaMinter.sol/Minter.json";
+import type { MaxjaMinter } from "../typechain-types";
+import MaxjaMinterArtifact from "../artifacts/contracts/MaxjaMinter.sol/MaxjaMinter.json";
 import { expect } from "chai";
 import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
 const { loadFixture, deployContract, solidity } = waffle;
@@ -12,15 +12,13 @@ const IERC20_SOURCE = "@openzeppelin/contracts/token/ERC20/IERC20.sol:IERC20";
 const USDC_ADDRESS = "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174";
 const USDC_WHALE = "0xF977814e90dA44bFA03b6295A0616a897441aceC";
 
-describe("Minter", () => {
-  let minterContract: Minter;
+describe("MaxjaMinter", () => {
+  let minterContract: MaxjaMinter;
   let usdcContract: Contract;
   let owner: SignerWithAddress;
   let acc1: SignerWithAddress;
-  let hacker: SignerWithAddress;
   let ownerAddress: string;
   let acc1Address: string;
-  let hackerAddress: string;
   let acc1Balance: BigNumber;
   let metaData =
     "https://gateway.pinata.cloud/ipfs/bafybeifhefluv354htkihbwlj2tnwkocote5p4ci4eqvdiffyongwcf524/testMetadata.json";
@@ -33,15 +31,14 @@ describe("Minter", () => {
         params: [USDC_WHALE],
       });
     
-    [owner, acc1, hacker] = await ethers.getSigners();
+    [owner, acc1] = await ethers.getSigners();
     ownerAddress = owner.address;
     acc1Address = acc1.address;
-    hackerAddress = hacker.address;
     /// @notice initalize whale signer 
     const whaleSigner = ethers.provider.getSigner(USDC_WHALE);
 
-    /// @notice get usdc contract's address and pass to Minter contract
-    /// @dev ERC1155's constructor arg is HARD CODED into Minter contract, no need to pass through in testing
+    /// @notice get usdc contract's address and pass to MaxjaMaxjaMinter contract
+    /// @dev ERC1155's constructor arg is HARD CODED into MaxjaMaxjaMinter contract, no need to pass through in testing
     usdcContract = await ethers.getContractAt(
       IERC20_SOURCE,
       USDC_ADDRESS,
@@ -59,16 +56,11 @@ describe("Minter", () => {
 
     /// @notice deploy minter contract with USDC address and whitelisted address in constructor
     /// @dev owner signer is contract's owner
-    minterContract = (await deployContract(owner, MinterArtifact, [
+    minterContract = (await deployContract(owner, MaxjaMinterArtifact, [
       USDC_ADDRESS,
       [acc1Address]
-    ])) as Minter;
+    ])) as MaxjaMinter;
   });
-
-  const ownerFixture = async () => {
-      const ownerMinterContract = minterContract.connect(owner);
-      return { ownerMinterContract };
-  }
 
   /// @notice set acc1 to default msg.sender and approve minter contract to spend 100 USDC
   const acc1Fixture = async () => {
@@ -90,7 +82,7 @@ describe("Minter", () => {
 
 
   /// @notice Check ERC1155 EXPECTED main functionality 
-  describe("ERC1155 Minter: Positive", async () => {
+  describe("ERC1155 MaxjaMinter: Positive", async () => {
     it("should allow whitelisted address to mint an NFT", async () => {
         const { minterContract } = await loadFixture(acc1Fixture);
         const balanceBefore = await minterContract.balanceOf(acc1Address, 0);
@@ -107,20 +99,16 @@ describe("Minter", () => {
         const { minterContract, usdcContract } = await loadFixture(acc1Fixture);
 
         const balanceBefore = await minterContract.connect(owner).getUsdcBalance();
-        const connectOwner = minterContract.connect(owner);
-
-        console.log("before: ", balanceBefore);
         await minterContract.mint();
-
         await minterContract.connect(owner).withdrawUsdc();
         const balanceAfter = await minterContract.connect(owner).getUsdcBalance();
-        console.log("after: ", balanceAfter);
+        
         expect(balanceAfter.toString()).to.equal('100');
     })
 
   })
   /// @notice Check ERC1155 UNEXPECTED main functionality
-  describe("ERC1155 Minter: Negative", async () => {
+  describe("ERC1155 MaxjaMinter: Negative", async () => {
       /// @notice whale is NOT whitelisted and tries to mint an NFT
       it("should NOT allow address NOT on whitelist to mint an NFT", async () => {
         const whaleSigner = ethers.provider.getSigner(USDC_WHALE);
