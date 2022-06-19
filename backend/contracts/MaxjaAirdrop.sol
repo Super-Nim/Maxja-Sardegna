@@ -13,7 +13,7 @@ contract MaxjaAirdrop is ERC721URIStorage, Ownable {
 
     mapping(address => bool) public isVerified;
 
-    constructor() ERC721("MaxjaTest", "MXT") {}
+    constructor() ERC721("Mandala", "MND") {}
 
     function sendNFT(address to, string memory tokenURI)
         onlyOwner()

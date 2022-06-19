@@ -69,9 +69,9 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.MaxjaAirdrop__factory>;
     getContractFactory(
-      name: "Minter",
+      name: "MaxjaMinter",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.Minter__factory>;
+    ): Promise<Contracts.MaxjaMinter__factory>;
 
     getContractAt(
       name: "Ownable",
@@ -144,10 +144,10 @@ declare module "hardhat/types/runtime" {
       signer?: ethers.Signer
     ): Promise<Contracts.MaxjaAirdrop>;
     getContractAt(
-      name: "Minter",
+      name: "MaxjaMinter",
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.Minter>;
+    ): Promise<Contracts.MaxjaMinter>;
 
     // default types
     getContractFactory(

@@ -7,7 +7,7 @@ const addresses = [
 ];
 const existingContractAddr = "0x02b31a30f391658e5bc6831Cef813A506f9e1Af0";
 
-async function main() {
+async function sendNFTs() {
   const nft = await hre.ethers.getContractAt("MaxjaAirdrop", existingContractAddr);
 
   const signer0 = await ethers.provider.getSigner(0);
@@ -22,7 +22,7 @@ async function main() {
   console.log("Minting is complete!");
 }
 
-main()
+sendNFTs()
   .then(() => process.exit(0))
   .catch((error) => {
     console.error(error);

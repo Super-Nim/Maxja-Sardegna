@@ -13,7 +13,7 @@ module.exports = {
         blockNumber: 29715369
       }
     },
-    matic: {
+    mumbai: {
       url: process.env.ALCHEMY_URL,
       accounts: [process.env.PRIVATE_KEY],
     } 
