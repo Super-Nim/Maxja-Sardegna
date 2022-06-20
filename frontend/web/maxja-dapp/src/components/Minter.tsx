@@ -6,9 +6,7 @@ import {
   Grid,
   Button,
   CardMedia,
-  Alert,
 } from "@mui/material";
-import { Box } from "@mui/system";
 import {
   useWeb3ExecuteFunction,
   Web3ExecuteFunctionParameters,
