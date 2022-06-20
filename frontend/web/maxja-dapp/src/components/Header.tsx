@@ -98,6 +98,7 @@ const Header = () => {
               MINT NFT
             </Link>
             </NavLink>
+            <NavLink to="/view-nfts" style={linkStyle}>
             <Link
               variant="button"
               color="text.primary"
@@ -111,6 +112,7 @@ const Header = () => {
               VIEW NFTs
               </span>
             </Link>
+            </NavLink>
           </Grid>
         </nav>
 
