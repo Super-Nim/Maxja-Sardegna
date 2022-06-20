@@ -67,6 +67,7 @@ const Home = () => {
         height: "600px",
         width: "385px",
         borderRadius: "60px !important",
+        boxShadow: "0px 0px 6px 10px #00000005",
       }}
     >
       <Grid display="flex" alignContent="center">
