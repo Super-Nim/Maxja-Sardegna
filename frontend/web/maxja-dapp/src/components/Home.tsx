@@ -1,6 +1,4 @@
-import { Card, CardHeader, CardMedia, Grid, CardActions, CardContent, Button } from "@mui/material";
-import { Box } from "@mui/system";
-import { Typography } from "antd";
+import { Card, CardHeader, CardMedia, Grid, CardActions, CardContent, Button, Typography } from "@mui/material";
 import { useNavigate } from "react-router";
 import bigBuyCrypto from "../assets/bigBuyCrypto.png";
 import bigMintNFT from "../assets/bigMintNFT.png";
@@ -24,7 +22,7 @@ const Home = () => {
             title: "BUY CRYPTO",
             image: bigBuyCrypto,
             background: "#741918",
-            description: "Get some Funds! /n Purchase at least 1 Matic and $100 USDC to MINT your NFT",
+            description: "Get some Funds! Purchase $100 USDC to MINT your NFT. Remember to have at least 1 MATIC for gas fees!",
             buttonText: "BUY CRYPTO",
             to: "/buy-crypto"
         },

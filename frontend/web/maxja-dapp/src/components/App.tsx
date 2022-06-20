@@ -1,12 +1,13 @@
 import "../scss/App.scss";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Navigate } from "react-router";
+import { Grid } from "@mui/material";
 import Footer from "./Footer";
 import Header from "./Header";
 import SignUp from "./SignUp";
 import BuyCrypto from "./Account/BuyCrypto";
 import Minter from './Minter';
-import { Grid } from "@mui/material";
+import ViewNFTs from "./Account/ViewNFTs";
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
         <Route path="/home"  element={<SignUp/>} />
         <Route path="/buy-crypto" element={<BuyCrypto/>}/>
         <Route path="/mint-nft" element={<Minter/>}/>
+        <Route path="/view-nfts" element={<ViewNFTs/>}/>
       </Routes>
       </Grid>
       <Footer />
