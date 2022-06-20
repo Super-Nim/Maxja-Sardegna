@@ -30,6 +30,7 @@ const hrStyle = {
   height: 0,
   width: "100%",
   background: "#E2E2E2",
+  border: "1px solid #E2E2E2",
 };
 
 const Minter = () => {
@@ -121,22 +122,24 @@ const Minter = () => {
         height: "600px",
         width: "500px",
         borderRadius: "60px !important",
+        boxShadow: "0px 0px 6px 10px #00000005",
       }}
     >
       <Grid display="flex" alignContent="center">
         <CardHeader
           title={minterCard.title}
           titleTypographyProps={{ paddingLeft: "10px", align: "right" }}
-          subheaderTypographyProps={{
-            color: "#C5716B",
-            align: "center",
-            marginLeft: "auto",
-          }}
-          sx={{ marginRight: "230px", display: "flex", paddingLeft: "30px" }}
+          // subheaderTypographyProps={{
+          //   color: "#C5716B",
+          //   align: "center",
+          //   marginLeft: "auto",
+          // }}
+          sx={{ padding: "0", paddingTop: "20px", marginRight: "230px", display: "flex"}}
         />
         <CardHeader
           title="More"
           titleTypographyProps={{ fontSize: "18px", color: "#C5716B" }}
+          sx= {{ padding: "0", paddingTop: "20px", cursor: "pointer"}}
         >
           More
         </CardHeader>
@@ -144,19 +147,8 @@ const Minter = () => {
       <hr style={hrStyle} />
 
       <CardContent>
-        <Box
-          component="form"
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "baseline",
-            mb: 2,
-          }}
-        >
-          <Grid container spacing={2}>
-            <CardMedia component="img" image={ticket} width="350"></CardMedia>
-          </Grid>
-        </Box>
+       
+      <CardMedia component="img" image={ticket} width="350"/>
       </CardContent>
       <CardActions>
         {!showMint ? (
