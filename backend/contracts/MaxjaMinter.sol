@@ -10,11 +10,10 @@ import "@openzeppelin/contracts/utils/Counters.sol";
 contract MaxjaMinter is ERC1155, Ownable {
    using Counters for Counters.Counter;
     IERC20 public tokenAddress;
-    string public name = "Maxja Ticket";
-    string public symbol = "MXT";
+    string public name = "The Deer";
+    string public symbol = "TDR";
     // TODO: confirm the rate amount in test file, set to 100 for mainnet
     uint256 public rate = 1 * 10 ** 18;
-    // uint256 public rate = 100;
     address[] public whitelist;
     Counters.Counter private _tokenIdCounter;
 

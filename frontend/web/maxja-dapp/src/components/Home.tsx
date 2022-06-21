@@ -39,7 +39,7 @@ const Home = () => {
           image: bigViewNFTs,
           description: "“The Deer” Deer have sharp hearing, vision, and sense of smell. They can see approximately 360 degrees. Because of their potent sensitivity, deer symbolize instincts and intuition.",
           background: "",
-          buttonText: "MINT NFTs",
+          buttonText: "VIEW NFTs",
           to: "/view-nfts"
         }
     ]
@@ -54,9 +54,9 @@ const Home = () => {
       }
 
     }
-
+    //TODO: add media query @1335px width to REMOVE alignContent center 
     return (
-        <Grid container justifyContent="center" spacing={2} sx={{gap: "5em"}}>
+        <Grid container justifyContent="center" alignContent="center" sx={{gap: "5em", height: "100%", width: "100%", overflowY: "scroll", padding: "10px"}}>
 
         {cards.map((card: cardProps) => (
       <Card
@@ -67,6 +67,7 @@ const Home = () => {
         height: "600px",
         width: "385px",
         borderRadius: "60px !important",
+        boxShadow: "0px 0px 6px 10px #00000005",
       }}
     >
       <Grid display="flex" alignContent="center">

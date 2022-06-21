@@ -26,7 +26,7 @@ const BuyCrypto = () => {
         style={{
           width: "420px",
           height: "625px",
-          boxShadow: "0 0.5rem 1.2rem rgb(189 197 209 / 20%)",
+          boxShadow: "0px 0px 6px 10px #00000005",
           border: "1px solid #e7eaf3",
           borderRadius: "60px",
           backgroundColor: "white",
