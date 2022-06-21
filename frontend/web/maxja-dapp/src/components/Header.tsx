@@ -11,6 +11,7 @@ import mintNFTH from "../assets/mintNFTH.png";
 import viewNFTsH from "../assets/viewNFTH.png";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
+import NativeBalance from "./Account/NativeBalance";
 
 const Header = () => {
 
@@ -108,7 +109,7 @@ const Header = () => {
             </NavLink>
           </Grid>
         </nav>
-
+        <NativeBalance/>
         <Account />
       </Toolbar>
     </AppBar>
