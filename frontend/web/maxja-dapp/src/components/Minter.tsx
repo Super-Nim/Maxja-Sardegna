@@ -6,6 +6,8 @@ import {
   Grid,
   Button,
   CardMedia,
+  Dialog as MuiDialog,
+  DialogTitle,
 } from "@mui/material";
 import {
   useWeb3ExecuteFunction,
@@ -17,7 +19,12 @@ import { usdcABI, usdcAddress } from "../usdcContract";
 import { useMoralis } from "react-moralis";
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
+import MetaMask from "../assets/metamaskWallet.png";
 import "react-toastify/dist/ReactToastify.css";
+
+const metamaskStyle = {
+  cursor: "pointer",
+};
 
 const minterCard = {
   title: "NFT Minter",
@@ -34,9 +41,9 @@ const hrStyle = {
 const Minter = () => {
   /// @dev useWeb3ExecuteFunction function for write/call methods
   const { data, error, fetch, isFetching } = useWeb3ExecuteFunction();
-  const [successDialog, setSuccessDialog] = useState(false);
+  const [isDialogVisible, setIsDialogVisible] = useState(false);
   const [showMint, setShowMint] = useState(false);
-  const { Moralis, account } = useMoralis();
+  const { authenticate, account } = useMoralis();
   // TODO: fix contract Rate before deploying to mainnet, here is how
   // const usdcValue = Moralis.Units.Token("100", 18);
 
@@ -63,8 +70,6 @@ const Minter = () => {
   };
 
   const approve = async () => {
-    // onSucccess => execute mint() func
-
     fetch({
       params: approveUSDC,
       onSuccess: () => {
@@ -72,7 +77,6 @@ const Minter = () => {
         // mint();
       },
     });
-    setSuccessDialog(true);
 
     console.log("data: ", data);
     console.log("error: ", error);
@@ -93,23 +97,30 @@ const Minter = () => {
   // TODO: need to fetch whitelist
   // create a for loop, each time fetch the whiteList[0], [1], etc - if address !== account --> toast.error() else --> approve USDC
   const isWhitelisted = async () => {
+    if (!account) {
+      setIsDialogVisible(true);
+    } else {
 
-    fetch({
-      params: getWhitelist,
-      onSuccess: (tx: any) => {
-        const isWhitelisted = tx.some((address: string) => {
-          return address === account
-        })
-        if (isWhitelisted) {
-          approve();
-        } else {
-          toast.error("You did not register for the Mandala airdrop");
-      }
-      },
-    });
-    console.log('data whitelist: ', data)
-    console.log('error whitelist: ', error);
-    console.log('isFetching whitelist: ', isFetching);
+      approve();
+
+      fetch({
+        params: getWhitelist,
+        onSuccess: (tx: any) => {
+
+          const isWhitelisted = tx.some((address: string) => {
+            return address === account;
+          });
+          if (isWhitelisted) {
+            approve();
+          } else {
+            toast.error("You did not register for the Mandala airdrop");
+          }
+        },
+      });
+      console.log("data whitelist: ", data);
+      console.log("error whitelist: ", error);
+      console.log("isFetching whitelist: ", isFetching);
+    }
   };
 
   return (
@@ -127,17 +138,17 @@ const Minter = () => {
         <CardHeader
           title={minterCard.title}
           titleTypographyProps={{ paddingLeft: "10px", align: "right" }}
-          // subheaderTypographyProps={{
-          //   color: "#C5716B",
-          //   align: "center",
-          //   marginLeft: "auto",
-          // }}
-          sx={{ padding: "0", paddingTop: "20px", marginRight: "230px", display: "flex"}}
+          sx={{
+            padding: "0",
+            paddingTop: "20px",
+            marginRight: "230px",
+            display: "flex",
+          }}
         />
         <CardHeader
           title="More"
           titleTypographyProps={{ fontSize: "18px", color: "#C5716B" }}
-          sx= {{ padding: "0", paddingTop: "20px", cursor: "pointer"}}
+          sx={{ padding: "0", paddingTop: "20px", cursor: "pointer" }}
         >
           More
         </CardHeader>
@@ -145,8 +156,7 @@ const Minter = () => {
       <hr style={hrStyle} />
 
       <CardContent>
-       
-      <CardMedia component="img" image={ticket} width="350"/>
+        <CardMedia component="img" image={ticket} width="350" />
       </CardContent>
       <CardActions>
         {!showMint ? (
@@ -185,6 +195,33 @@ const Minter = () => {
           </Button>
         )}
       </CardActions>
+      <MuiDialog
+        open={isDialogVisible}
+        onClose={() => setIsDialogVisible(false)}
+      >
+        <Grid
+          justifyItems="center"
+          sx={{ textAlign: "center", height: "20vh", width: "30vw" }}
+        >
+          <DialogTitle>
+            Please Connect your MetaMask Wallet before minting
+          </DialogTitle>
+          <img
+            src={MetaMask}
+            style={metamaskStyle}
+            alt="MetaMask"
+            onClick={async () => {
+              try {
+                await authenticate();
+                window.localStorage.setItem("metamask", "injected");
+                setIsDialogVisible(false);
+              } catch (e) {
+                console.error(e);
+              }
+            }}
+          />
+        </Grid>
+      </MuiDialog>
       <ToastContainer />
     </Card>
   );

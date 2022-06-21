@@ -1,4 +1,4 @@
-import { AppBar, Button, Toolbar, Typography, Link, Grid } from "@mui/material";
+import { AppBar, Toolbar, Link, Grid } from "@mui/material";
 import logo from "../assets/MaxjaLogoTransparent.png";
 import Account from "./Account/Account";
 import home from "../assets/home.png";
@@ -10,12 +10,9 @@ import buyCryptoH from "../assets/buyCryptoH.png";
 import mintNFTH from "../assets/mintNFTH.png";
 import viewNFTsH from "../assets/viewNFTH.png";
 import { useState } from "react";
-import { useMoralis } from "react-moralis";
 import { NavLink } from "react-router-dom";
 
 const Header = () => {
-
-  const { signup, user, refetchUserData, enableWeb3} = useMoralis();
 
   const [onHomeHover, setOnHomeHover] = useState(false); 
   const [onBuyCryptoHover, setOnBuyCryptoHover] = useState(false);
@@ -27,10 +24,6 @@ const Header = () => {
     width: "200px",
   };
 
-  const navItemStyle = {
-    display: "flex",
-    columnGap: "50px,",
-  };
   const navImage = {
       height: "35%",
   }

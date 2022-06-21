@@ -28,14 +28,6 @@ const installMetaMaskCard = {
 
 const signupCard = {
   title: "Register for the Maxja NFT Airdrop!",
-  description: [
-    "20 users included",
-    "10 GB of storage",
-    "Help center access",
-    "Priority email support",
-  ],
-  buttonText: "Get started",
-  buttonVariant: "contained",
 };
 
 const metamaskStyle = {
@@ -44,20 +36,17 @@ const metamaskStyle = {
 
 const SignUp = () => {
   const {
-    signup,
     account,
     user,
     setUserData,
     authenticate,
     isAuthenticated,
-    refetchUserData,
   } = useMoralis();
   const [isMetaMaskInstalled, setIsMetaMaskInstalled] = useState(false);
   const onboarding = useRef<MetaMaskOnboarding>();
 
   const [isDialogVisible, setIsDialogVisible] = useState(false);
   const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
 
   const usernameOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -65,9 +54,6 @@ const SignUp = () => {
   };
   const emailOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
-  };
-  const passwordOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(event.target.value);
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -80,6 +66,7 @@ const SignUp = () => {
         username: username,
         email: email,
       });
+      toast.success("Successfully registered!")
       console.log(
         "user updated: ",
         user?.getUsername(),
@@ -87,7 +74,6 @@ const SignUp = () => {
         user?._isLinked("metamask")
       );
     }
-    toast.success("Successfully registered!")
   };
 
   useEffect(() => {
@@ -149,7 +135,6 @@ const SignUp = () => {
           justifyContent="center"
           sx={{ height: "70vh" }}
         >
-          {/* <Grid container spacing={5} alignItems="flex-end" justifyContent="center">         */}
           <Grid
             item
             xs={12}
