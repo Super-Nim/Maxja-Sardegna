@@ -86,7 +86,7 @@ const Header = () => {
     {name: "Mint NFT",
       to: "/mint-nft"},
     {name: "View NFTs", 
-    to: "viewNFTs"}
+    to: "/view-nfts"}
 
   ]
 
