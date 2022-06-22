@@ -5,10 +5,23 @@ import {
   CardMedia,
   Grid,
   CircularProgress,
+  Dialog as MuiDialog,
+  DialogTitle,
+  DialogContent,
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useMoralis, useNFTBalances } from "react-moralis";
 import MetaMask from "../../assets/metamaskWallet.png";
+
+type ISetInfoProps = {
+  index: number;
+};
+
+type IMetadata = {
+  name?: string;
+  image?: string;
+  description?: string;
+};
 
 type GetNFTExternalMetaForContractDto = {
   chainId: number;
@@ -60,10 +73,26 @@ const emptyState = {
 const ViewNFTs = () => {
   const { getNFTBalances, data, error, isFetching } = useNFTBalances();
   const { authenticate, account } = useMoralis();
-  const [covalentApi, setCovalentApi] = useState<any>();
+  // const [covalentApi, setCovalentApi] = useState<any>();
   const [balance, setBalance] = useState<ResolveCallOptions>();
+  const [isInfoVisible, setIsInfoVisible] = useState(false);
+  const [currentMetadata, setCurrentMetadata] = useState<any>();
+
+  const metadata: IMetadata[] = [];
   // TODO: defined param type for description of current NFT
-  const infoDialog = (metaData: any) => {};
+  const SetInfo = (index: ISetInfoProps | number) => {
+    if (!index) {
+      return;
+    }
+    console.log('INDEX SELECTED: ', index)
+    const selected = metadata[index as number];
+    console.log("SELECTED: ", selected)
+    setCurrentMetadata(selected);
+    setIsInfoVisible(true);
+  };
+
+  // Need to store each metadata into a state variable --> push as an object into array
+  // onClick "more" --> select object by index passed through, dialog will output the name/description
 
   // TODO: component to refetch NFTbalances when a new one enters wallet
   // for now just on render
@@ -72,14 +101,13 @@ const ViewNFTs = () => {
       // if (!Moralis?.["Plugins"]?.["covalent"]) return;
       // // Moralis.initPlugins();
       // // setCovalentApi(Moralis.Plugins.covalent);
-      const balance = await getNFTBalances({
-      });
+      const balance = await getNFTBalances({});
       setBalance(balance);
-   
-      console.log("NFT Balance: ", balance);
+      if (balance?.result) {
+        console.log("NFT Balance: ", balance?.result[2]?.metadata);
+      }
     };
     init();
-    console.log("account: ", account);
   }, []);
 
   if (isFetching) {
@@ -153,7 +181,11 @@ const ViewNFTs = () => {
         balance.result?.map((nft) => {
           /// @notice convert metadata into JSON obj in loop
           const tokenURI = JSON.parse(nft.metadata as string);
-          console.log("tokenURI: ", tokenURI);
+          // SetInfo(tokenURI);
+          metadata.push(tokenURI);
+          const selected = balance?.result?.indexOf(nft);
+          // console.log("metadata.push ", metadata);
+          // console.log("indexOf nft: ", balance?.result?.indexOf(nft));
           return (
             <Card
               key={nft.token_id}
@@ -187,13 +219,29 @@ const ViewNFTs = () => {
                   color: "#C5716B",
                   cursor: "pointer",
                 }}
-                onClick={() => infoDialog(nft.metadata)}
+                onClick={() => SetInfo(selected!)}
               >
                 More
               </CardActions>
+              <MuiDialog
+                open={isInfoVisible}
+                onClose={() => setIsInfoVisible(false)}
+              >
+                <Grid
+                  justifyItems="center"
+                  sx={{ textAlign: "center", height: "20vh", width: "30vw" }}
+                >
+                  <DialogTitle>{currentMetadata?.name}</DialogTitle>
+                  <DialogContent>{currentMetadata?.description}</DialogContent>
+                </Grid>
+              </MuiDialog>
+
+              {/* {isInfoVisible ? <SetInfo index={selected}/> : <></> } */}
+              {/* {isInfoVisible ? <SetInfo tokenURI={tokenURI}/> : <></>} */}
             </Card>
           );
         })}
+      {/* <SetInfo index={0}/> */}
     </Grid>
   );
 };

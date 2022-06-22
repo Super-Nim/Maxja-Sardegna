@@ -8,6 +8,7 @@ import {
   CardMedia,
   Dialog as MuiDialog,
   DialogTitle,
+  DialogContent,
 } from "@mui/material";
 import {
   useWeb3ExecuteFunction,
@@ -17,7 +18,7 @@ import ticket from "../assets/ticket.png";
 import { minterAddress, minterABI } from "../minterContract";
 import { usdcABI, usdcAddress } from "../usdcContract";
 import { useMoralis } from "react-moralis";
-import { useState } from "react";
+import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import MetaMask from "../assets/metamaskWallet.png";
 import "react-toastify/dist/ReactToastify.css";
@@ -42,6 +43,7 @@ const Minter = () => {
   /// @dev useWeb3ExecuteFunction function for write/call methods
   const { data, error, fetch, isFetching } = useWeb3ExecuteFunction();
   const [isDialogVisible, setIsDialogVisible] = useState(false);
+  const [isInfoVisible, setIsInfoVisible] = useState(false);
   const [showMint, setShowMint] = useState(false);
   const { authenticate, account } = useMoralis();
   // TODO: fix contract Rate before deploying to mainnet, here is how
@@ -123,6 +125,8 @@ const Minter = () => {
     }
   };
 
+ 
+
   return (
     <Card
       sx={{
@@ -149,6 +153,7 @@ const Minter = () => {
           title="More"
           titleTypographyProps={{ fontSize: "18px", color: "#C5716B" }}
           sx={{ padding: "0", paddingTop: "20px", cursor: "pointer" }}
+          onClick={() => setIsInfoVisible(true)}
         >
           More
         </CardHeader>
@@ -222,9 +227,29 @@ const Minter = () => {
           />
         </Grid>
       </MuiDialog>
+      <MuiDialog open={isInfoVisible} onClose={() => setIsInfoVisible(false)}>
+      <Grid
+          justifyItems="center"
+          sx={{ textAlign: "center", height: "30vh", width: "30vw" }}
+        >
+          <DialogTitle>
+            NFT Minter
+          </DialogTitle>
+          <DialogContent>
+           <ul>
+             <li>Claim your ticket to the Maxja Festival on XX/XX/XX.</li>
+             <li>Please have $100 USDC in your Metamask wallet</li>
+            <li>Polygon Network enables cheap and fast transactions, so you don't have to worry about gas fees!</li>
+            </ul>
+          </DialogContent>
+        </Grid>
+    </MuiDialog>
       <ToastContainer />
     </Card>
   );
+
+  
 };
+
 
 export default Minter;
