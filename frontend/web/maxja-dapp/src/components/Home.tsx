@@ -3,6 +3,7 @@ import { useNavigate } from "react-router";
 import bigBuyCrypto from "../assets/bigBuyCrypto.png";
 import bigMintNFT from "../assets/bigMintNFT.png";
 import bigViewNFTs from "../assets/bigViewNFTs.png";
+import "../scss/Home.scss";
 
 const Home = () => {
 
@@ -56,7 +57,7 @@ const Home = () => {
     }
     //TODO: add media query @1335px width to REMOVE alignContent center 
     return (
-        <Grid container justifyContent="center" alignContent="center" sx={{gap: "5em", height: "100%", width: "100%", overflowY: "scroll", padding: "10px"}}>
+        <Grid container className="container-media-query" justifyContent="center" sx={{gap: "5em", height: "100%", width: "100%", overflowY: "scroll", padding: "10px"}}>
 
         {cards.map((card: cardProps) => (
       <Card

@@ -1,0 +1,14 @@
+.dialog-media-query {
+    height: 20vh;
+    width: 30vh;
+}
+
+@media only screen and (max-width: 490px) {
+
+    .dialog-media-query {
+        height: 40vh;
+        width: 40vh;
+    }
+
+
+}

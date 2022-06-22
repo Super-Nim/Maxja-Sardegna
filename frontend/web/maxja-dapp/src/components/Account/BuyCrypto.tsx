@@ -18,6 +18,7 @@ const BuyCrypto = () => {
   }, [Moralis.Plugins, []]);
 
   return (
+    <Grid container className="container-media-query" justifyContent="center" sx={{gap: "5em", height: "100%", width: "100%", overflowY: "scroll", padding: "10px"}}>
       <iframe
         src={ramper}
         title="ramper"
@@ -32,6 +33,7 @@ const BuyCrypto = () => {
           backgroundColor: "white",
         }}
       />
+      </Grid>
   );
 };
 

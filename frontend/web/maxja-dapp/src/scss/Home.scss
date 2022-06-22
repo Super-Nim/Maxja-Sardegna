@@ -7,3 +7,13 @@
 body {
     font-family: 'Fira Sans', sans-serif;
 }
+
+.container-media-query {
+  align-content: center;
+}
+
+@media only screen and (max-width: 1335px) {
+  .container-media-query {
+    align-content: unset;
+  }
+}

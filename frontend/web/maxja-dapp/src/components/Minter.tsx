@@ -8,6 +8,7 @@ import {
   CardMedia,
   Dialog as MuiDialog,
   DialogTitle,
+  DialogContent,
 } from "@mui/material";
 import {
   useWeb3ExecuteFunction,
@@ -17,10 +18,11 @@ import ticket from "../assets/ticket.png";
 import { minterAddress, minterABI } from "../minterContract";
 import { usdcABI, usdcAddress } from "../usdcContract";
 import { useMoralis } from "react-moralis";
-import { useState } from "react";
+import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import MetaMask from "../assets/metamaskWallet.png";
 import "react-toastify/dist/ReactToastify.css";
+import "../scss/Minter.scss";
 
 const metamaskStyle = {
   cursor: "pointer",
@@ -38,10 +40,21 @@ const hrStyle = {
   border: "1px solid #E2E2E2",
 };
 
+const liStyle = {
+  listStyleType: "none",
+  margin: "10px 0"
+
+}
+
+const ulStyle = {
+  padding: 0
+}
+
 const Minter = () => {
   /// @dev useWeb3ExecuteFunction function for write/call methods
   const { data, error, fetch, isFetching } = useWeb3ExecuteFunction();
   const [isDialogVisible, setIsDialogVisible] = useState(false);
+  const [isInfoVisible, setIsInfoVisible] = useState(false);
   const [showMint, setShowMint] = useState(false);
   const { authenticate, account } = useMoralis();
   // TODO: fix contract Rate before deploying to mainnet, here is how
@@ -123,7 +136,10 @@ const Minter = () => {
     }
   };
 
+ 
+
   return (
+    <Grid container className="container-media-query" justifyContent="center" sx={{gap: "5em", height: "100%", width: "100%", overflowY: "scroll", padding: "10px"}}>
     <Card
       sx={{
         display: "grid",
@@ -136,12 +152,12 @@ const Minter = () => {
     >
       <Grid display="flex" alignContent="center">
         <CardHeader
+          className="card-header-media-query"
           title={minterCard.title}
           titleTypographyProps={{ paddingLeft: "10px", align: "right" }}
           sx={{
             padding: "0",
             paddingTop: "20px",
-            marginRight: "230px",
             display: "flex",
           }}
         />
@@ -149,6 +165,7 @@ const Minter = () => {
           title="More"
           titleTypographyProps={{ fontSize: "18px", color: "#C5716B" }}
           sx={{ padding: "0", paddingTop: "20px", cursor: "pointer" }}
+          onClick={() => setIsInfoVisible(true)}
         >
           More
         </CardHeader>
@@ -222,9 +239,30 @@ const Minter = () => {
           />
         </Grid>
       </MuiDialog>
+      <MuiDialog open={isInfoVisible} onClose={() => setIsInfoVisible(false)}>
+      <Grid
+          justifyItems="center"
+          sx={{ textAlign: "center", height: "20vh", width: "30vw" }}
+        >
+          <DialogTitle>
+            Maxja Festival 2022 Ticket
+          </DialogTitle>
+          <DialogContent>
+           <ul style={ulStyle}>
+             <li style={liStyle}>Claim your ticket to the Maxja Festival!</li>
+             <li style={liStyle}>Please have $167 USDC in your MetaMask wallet.</li>
+            <li style={liStyle}>Polygon Network enables cheap and fast transactions, so you don't have to worry about expensive gas fees!</li>
+            </ul>
+          </DialogContent>
+        </Grid>
+    </MuiDialog>
       <ToastContainer />
     </Card>
+    </Grid>
   );
+
+  
 };
+
 
 export default Minter;
