@@ -39,6 +39,16 @@ const hrStyle = {
   border: "1px solid #E2E2E2",
 };
 
+const liStyle = {
+  listStyleType: "none",
+  margin: "10px 0"
+
+}
+
+const ulStyle = {
+  padding: 0
+}
+
 const Minter = () => {
   /// @dev useWeb3ExecuteFunction function for write/call methods
   const { data, error, fetch, isFetching } = useWeb3ExecuteFunction();
@@ -230,16 +240,16 @@ const Minter = () => {
       <MuiDialog open={isInfoVisible} onClose={() => setIsInfoVisible(false)}>
       <Grid
           justifyItems="center"
-          sx={{ textAlign: "center", height: "30vh", width: "30vw" }}
+          sx={{ textAlign: "center", height: "20vh", width: "30vw" }}
         >
           <DialogTitle>
-            NFT Minter
+            Maxja Festival 2022 Ticket
           </DialogTitle>
           <DialogContent>
-           <ul>
-             <li>Claim your ticket to the Maxja Festival on XX/XX/XX.</li>
-             <li>Please have $100 USDC in your Metamask wallet</li>
-            <li>Polygon Network enables cheap and fast transactions, so you don't have to worry about gas fees!</li>
+           <ul style={ulStyle}>
+             <li style={liStyle}>Claim your ticket to the Maxja Festival!</li>
+             <li style={liStyle}>Please have $167 USDC in your MetaMask wallet.</li>
+            <li style={liStyle}>Polygon Network enables cheap and fast transactions, so you don't have to worry about expensive gas fees!</li>
             </ul>
           </DialogContent>
         </Grid>
