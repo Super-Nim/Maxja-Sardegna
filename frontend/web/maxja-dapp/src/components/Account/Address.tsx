@@ -8,12 +8,13 @@ import { Skeleton } from "antd";
 
 const styles = {
   address: {
-    height: "36px",
+    height: "30px",
     display: "flex",
     gap: "5px",
     backgroundColor: "rgba(255, 255, 255, 0.1)",
     borderRadius: "9px",
     alignItems: "center",
+    fontSize: "18px"
   },
 };
 

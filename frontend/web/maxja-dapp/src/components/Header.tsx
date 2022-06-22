@@ -23,9 +23,13 @@ import homeH from "../assets/homeH.png";
 import buyCryptoH from "../assets/buyCryptoH.png";
 import mintNFTH from "../assets/mintNFTH.png";
 import viewNFTsH from "../assets/viewNFTH.png";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
 import NativeBalance from "./Account/NativeBalance";
+import Polygon from "./Account/Polygon";
+import MetaMaskOnboarding from "@metamask/onboarding";
+import { getEllipsisTxt } from "../helpers/format";
+import { useMoralis } from "react-moralis";
 
 type LinkProps = {
   name: string;
@@ -33,7 +37,11 @@ type LinkProps = {
 }
 
 const Header = () => {
-  const mediaQuery = useMediaQuery("(max-width:1080px)");
+  const mediaQuery = useMediaQuery("(max-width:1225px)");
+  const onboarding = useRef<MetaMaskOnboarding>();
+  const { account, authenticate, isAuthenticated, logout } = useMoralis();
+  
+  const [isMetaMaskInstalled, setIsMetaMaskInstalled] = useState(false)
   const [drawer, setDrawer] = useState(false);
   const [onHomeHover, setOnHomeHover] = useState(false);
   const [onBuyCryptoHover, setOnBuyCryptoHover] = useState(false);
@@ -82,28 +90,95 @@ const Header = () => {
 
   ]
 
+  const authenticated = async () => {
+    if(!isMetaMaskInstalled) {
+      onboarding.current?.startOnboarding()
+    }
+      try {
+        await authenticate();
+        window.localStorage.setItem("metamask", "injected");
+      } catch (e) {
+        console.error(e);
+      
+  }
+}
+
+  useEffect(() => {
+    if (!onboarding.current) {
+      onboarding.current = new MetaMaskOnboarding();
+    }
+    
+    if (MetaMaskOnboarding.isMetaMaskInstalled()) {
+      setIsMetaMaskInstalled(true);
+    } else {
+      setIsMetaMaskInstalled(false);
+    }
+    console.log('ACC: ', account)
+  }, []);
+
+
+
   const list = () => {
-    return (
-      <Box
+
+    if (!isAuthenticated) {
+      return (
+        <Box
         sx={{ width: "250px" }}
         role="presentation"
         onClick={() => setDrawer(false)}
         onKeyDown={() => setDrawer(false)}
       >
         <List>
+          <ListItem>
+            <ListItemButton>
+              <ListItemText primary="Connect Wallet" onClick={() => authenticated()}/>
+            </ListItemButton>
+            </ListItem>
+            <Divider/>
           {links.map(
             (link) => (
               <ListItem key={link.name} disablePadding>
                 <NavLink to={link.to} style={linkStyleDrawer}>
                 <ListItemButton>
-                  <ListItemText primary={link.name} />
+                  <ListItemText primary={link.name} sx={{textOverflow: "ellipsis"}} />
                 </ListItemButton>
                 </NavLink>
               </ListItem>
             )
           )}
         </List>
-      </Box>
+      </Box>  
+      )
+    }
+
+    return (
+      <Box
+      sx={{ width: "250px" }}
+      role="presentation"
+      onClick={() => setDrawer(false)}
+      onKeyDown={() => setDrawer(false)}
+    >
+      <List>
+        <ListItem>
+          <ListItemButton>
+            <ListItemText primary={getEllipsisTxt(account!)} onClick={() => logout()}/>
+          </ListItemButton>
+          </ListItem>
+          <Divider/>
+        {links.map(
+          (link) => (
+            <ListItem key={link.name} disablePadding>
+              <NavLink to={link.to} style={linkStyleDrawer}>
+              <ListItemButton>
+                <ListItemText primary={link.name} />
+              </ListItemButton>
+              </NavLink>
+            </ListItem>
+          )
+        )}
+      </List>
+    </Box>
+      
     );
   };
 
@@ -120,7 +195,7 @@ const Header = () => {
       }}
     >
       {mediaQuery ? (
-        <Toolbar sx={{ flexWrap: "wrap", justifyContent: "space-between" }}>
+        <Toolbar sx={{ flexWrap: "wrap", justifyContent: "space-evenly" }}>
           <img src={logo} alt="Maxja Logo" style={logoStyle} />
           <MenuIcon
             style={menuIconStyle}
@@ -240,8 +315,11 @@ const Header = () => {
               </NavLink>
             </Grid>
           </nav>
-          <NativeBalance />
+          {/* <NativeBalance /> */}
+          <Box display="inline-flex" flexDirection="row" sx={{gap: "10px"}}>
+          <Polygon/>
           <Account />
+          </Box>
         </Toolbar>
       )}
     </AppBar>
