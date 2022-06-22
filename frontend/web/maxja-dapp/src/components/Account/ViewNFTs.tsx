@@ -224,6 +224,7 @@ const ViewNFTs = () => {
                 More
               </CardActions>
               <MuiDialog
+              className="dialog-media-query"
                 open={isInfoVisible}
                 onClose={() => setIsInfoVisible(false)}
               >
