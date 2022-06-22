@@ -19,3 +19,10 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;}
+
+  @media only screen and (max-width: 490px) {
+    .background {
+      height: 100%;
+    }
+
+  }

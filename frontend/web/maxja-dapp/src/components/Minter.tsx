@@ -22,6 +22,7 @@ import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import MetaMask from "../assets/metamaskWallet.png";
 import "react-toastify/dist/ReactToastify.css";
+import "../scss/Minter.scss";
 
 const metamaskStyle = {
   cursor: "pointer",
@@ -138,6 +139,7 @@ const Minter = () => {
  
 
   return (
+    <Grid container className="container-media-query" justifyContent="center" sx={{gap: "5em", height: "100%", width: "100%", overflowY: "scroll", padding: "10px"}}>
     <Card
       sx={{
         display: "grid",
@@ -150,12 +152,12 @@ const Minter = () => {
     >
       <Grid display="flex" alignContent="center">
         <CardHeader
+          className="card-header-media-query"
           title={minterCard.title}
           titleTypographyProps={{ paddingLeft: "10px", align: "right" }}
           sx={{
             padding: "0",
             paddingTop: "20px",
-            marginRight: "230px",
             display: "flex",
           }}
         />
@@ -256,6 +258,7 @@ const Minter = () => {
     </MuiDialog>
       <ToastContainer />
     </Card>
+    </Grid>
   );
 
   
