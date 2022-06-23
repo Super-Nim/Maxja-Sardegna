@@ -65,14 +65,14 @@ const Minter = () => {
     contractAddress: minterAddress,
     functionName: "getWhitelistLength",
   };
-
+  // TODO: _value might not work with decimals???
   const approveUSDC: Web3ExecuteFunctionParameters = {
     abi: usdcABI,
     contractAddress: usdcAddress,
     functionName: "approve",
     params: {
       _spender: minterAddress,
-      _value: 100,
+      _value: 0.1,
     },
   };
 
@@ -113,9 +113,7 @@ const Minter = () => {
     if (!account) {
       setIsDialogVisible(true);
     } else {
-
       approve();
-
       fetch({
         params: getWhitelist,
         onSuccess: (tx: any) => {

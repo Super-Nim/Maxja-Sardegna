@@ -68,10 +68,10 @@ const hrStyle = {
 
 const emptyState = {
   emptyWallet: "You have no NFTs in your wallet",
-  notAuthenticated: "Please connect your wallet to view your NFTs",
+  notAuthenticated: "Please connect your MetaMask wallet to view your NFTs",
 };
 const ViewNFTs = () => {
-  const { getNFTBalances, data, error, isFetching } = useNFTBalances();
+  const { getNFTBalances, isFetching } = useNFTBalances();
   const { authenticate, account } = useMoralis();
   // const [covalentApi, setCovalentApi] = useState<any>();
   const [balance, setBalance] = useState<ResolveCallOptions>();

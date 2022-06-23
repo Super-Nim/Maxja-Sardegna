@@ -29,7 +29,7 @@ import NativeBalance from "./Account/NativeBalance";
 import Polygon from "./Account/Polygon";
 import MetaMaskOnboarding from "@metamask/onboarding";
 import { getEllipsisTxt } from "../helpers/format";
-import { useMoralis } from "react-moralis";
+import { useChain, useMoralis } from "react-moralis";
 
 type LinkProps = {
   name: string;
@@ -40,6 +40,8 @@ const Header = () => {
   const mediaQuery = useMediaQuery("(max-width:1225px)");
   const onboarding = useRef<MetaMaskOnboarding>();
   const { account, authenticate, isAuthenticated, logout } = useMoralis();
+  const { switchNetwork, chainId } = useChain();
+
   
   const [isMetaMaskInstalled, setIsMetaMaskInstalled] = useState(false)
   const [drawer, setDrawer] = useState(false);
@@ -114,7 +116,19 @@ const Header = () => {
       setIsMetaMaskInstalled(false);
     }
     console.log('ACC: ', account)
-  }, []);
+  }, [], );
+
+  useEffect(() => {
+    //TOOD: UNCOMMENT FOR LIVE DAPP
+    // const checkChain = async () => {
+    //   if (chainId !== "0x89") {
+    //     switchNetwork("0x89");
+    //   }
+    // }
+    //   console.log('chainId: ', chainId);
+    // checkChain()
+
+  }, [chainId])
 
 
 
