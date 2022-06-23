@@ -27,7 +27,7 @@ const installMetaMaskCard = {
 }
 
 const signupCard = {
-  title: "Register for the Maxja NFT Airdrop!",
+  title: "Register for the Mandala NFT Airdrop!",
 };
 
 const metamaskStyle = {
