@@ -113,19 +113,22 @@ const Minter = () => {
     if (!account) {
       setIsDialogVisible(true);
     } else {
-      approve();
       fetch({
         params: getWhitelist,
         onSuccess: (tx: any) => {
 
-          const isWhitelisted = tx.some((address: string) => {
-            return address === account;
-          });
-          if (isWhitelisted) {
-            approve();
-          } else {
-            toast.error("You did not register for the Mandala airdrop");
-          }
+          tx.wait().then((res: any) => {
+            console.log('RES: ', res)
+            const isWhitelisted = res.some((address: string) => {
+              return address === account;
+            });
+            if (isWhitelisted) {
+              approve();
+            } else {
+              toast.error("You did not register for the Mandala airdrop");
+            }
+          })
+         
         },
       });
       console.log("data whitelist: ", data);
