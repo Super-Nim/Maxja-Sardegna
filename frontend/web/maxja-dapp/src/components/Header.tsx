@@ -119,14 +119,13 @@ const Header = () => {
   }, [], );
 
   useEffect(() => {
-    //TOOD: UNCOMMENT FOR LIVE DAPP
-    // const checkChain = async () => {
-    //   if (chainId !== "0x89") {
-    //     switchNetwork("0x89");
-    //   }
-    // }
-    //   console.log('chainId: ', chainId);
-    // checkChain()
+    const checkChain = async () => {
+      if (chainId !== "0x89") {
+        switchNetwork("0x89");
+      }
+    }
+      console.log('chainId: ', chainId);
+    checkChain()
 
   }, [chainId])
 
