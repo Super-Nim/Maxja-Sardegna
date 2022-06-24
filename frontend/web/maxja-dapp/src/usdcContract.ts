@@ -1,4 +1,4 @@
-export const usdcAddress = "0xe11A86849d99F524cAC3E7A0Ec1241828e332C62";
+export const usdcAddress = "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174";
 export const usdcABI = [
     {
         "constant": true,

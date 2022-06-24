@@ -12,10 +12,10 @@ contract MaxjaMinter is ERC1155, Ownable {
     Counters.Counter private _tokenIdCounter;
     string public name = "The Deer";
     string public symbol = "TDR";
-    // TODO: confirm the rate amount in test file, 
+    // USDC has 6 decimal places NOT 18
     // set to 0.1 USDC for TESTING on MAINNET
     // set to 167 USDC for FINAL PROJECT
-    uint256 public rate = 1 * 10 ** 17;
+    uint256 public rate = 1 * 10 ** 5;
     address[] public whitelist;
     IERC20 public tokenAddress;
 
