@@ -148,6 +148,7 @@ const ViewNFTs = () => {
     );
   } else if (balance?.result?.length === 0) {
     return (
+      <Grid className="empty-nft-media-query" justifyContent="center" alignContent="center">
       <Card
         sx={{
           display: "grid",
@@ -162,6 +163,7 @@ const ViewNFTs = () => {
           titleTypographyProps={{ align: "center" }}
         />
       </Card>
+      </Grid>
     );
   }
 

@@ -8,17 +8,20 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 
 contract MaxjaMinter is ERC1155, Ownable {
-   using Counters for Counters.Counter;
-    IERC20 public tokenAddress;
+    using Counters for Counters.Counter;
+    Counters.Counter private _tokenIdCounter;
     string public name = "The Deer";
     string public symbol = "TDR";
-    // TODO: confirm the rate amount in test file, set to 100 for mainnet
-    uint256 public rate = 1 * 10 ** 18;
+    // USDC has 6 decimal places NOT 18
+    // set to 0.1 USDC for TESTING on MAINNET
+    // set to 167 USDC for FINAL PROJECT
+    uint256 public rate = 1 * 10 ** 5;
     address[] public whitelist;
-    Counters.Counter private _tokenIdCounter;
+    IERC20 public tokenAddress;
 
 
-    constructor(address _tokenAddress, address[] memory _whitelist) ERC1155("https://gateway.pinata.cloud/ipfs/bafybeifhefluv354htkihbwlj2tnwkocote5p4ci4eqvdiffyongwcf524/testMetadata.json") {
+
+    constructor(address _tokenAddress, address[] memory _whitelist) ERC1155("https://bafkreiaq4h3l6amwzspgaaazsybuunnu6lktatuq4pgrvk2xxyoxlnci6u.ipfs.nftstorage.link/") {
         tokenAddress = IERC20(_tokenAddress);
         whitelist = _whitelist;
     }
@@ -39,7 +42,7 @@ contract MaxjaMinter is ERC1155, Ownable {
         return tokenAddress.balanceOf(msg.sender);
     }
 
-    function getWhitelistLength() external view returns (uint16) {
+    function getWhitelistLength() external view returns (uint256) {
         return whitelist.length;
     }
 
@@ -55,5 +58,4 @@ contract MaxjaMinter is ERC1155, Ownable {
         }
         return false;
     }
-
 }

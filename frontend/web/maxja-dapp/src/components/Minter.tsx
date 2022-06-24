@@ -60,19 +60,20 @@ const Minter = () => {
   // TODO: fix contract Rate before deploying to mainnet, here is how
   // const usdcValue = Moralis.Units.Token("100", 18);
 
-  const getWhitelist: Web3ExecuteFunctionParameters = {
+  const getWhitelistLength: Web3ExecuteFunctionParameters = {
     abi: minterABI,
     contractAddress: minterAddress,
     functionName: "getWhitelistLength",
   };
   // TODO: _value might not work with decimals???
+  // try doing ethers.utils.formatEther
   const approveUSDC: Web3ExecuteFunctionParameters = {
     abi: usdcABI,
     contractAddress: usdcAddress,
     functionName: "approve",
     params: {
       _spender: minterAddress,
-      _value: 0.1,
+      _value: 100000,
     },
   };
 
@@ -107,35 +108,36 @@ const Minter = () => {
       },
     });
   };
-  // TODO: need to fetch whitelist
+  // TODO: need to fetch whitelist -- NO NEED SOLIDITY HAS REQUIRE STATEMENT ALREADY
   // create a for loop, each time fetch the whiteList[0], [1], etc - if address !== account --> toast.error() else --> approve USDC
-  const isWhitelisted = async () => {
-    if (!account) {
-      setIsDialogVisible(true);
-    } else {
-      fetch({
-        params: getWhitelist,
-        onSuccess: (tx: any) => {
+  // const isWhitelisted = async () => {
+  //   if (!account) {
+  //     setIsDialogVisible(true);
+  //   } else {
 
-          tx.wait().then((res: any) => {
-            console.log('RES: ', res)
-            const isWhitelisted = res.some((address: string) => {
-              return address === account;
-            });
-            if (isWhitelisted) {
-              approve();
-            } else {
-              toast.error("You did not register for the Mandala airdrop");
-            }
-          })
-         
-        },
-      });
-      console.log("data whitelist: ", data);
-      console.log("error whitelist: ", error);
-      console.log("isFetching whitelist: ", isFetching);
-    }
-  };
+
+
+  //     fetch({
+  //       params: getWhitelistLength,
+  //       onSuccess: async (tx: any) => {
+  //         /// @dev returns BN type
+  //         const length = tx.toString();
+  //         // 
+  //         console.log('length: ', length);
+  //           const isWhitelisted = length.some((address: string) => {
+  //             return address === account;
+  //           });
+  //           if (isWhitelisted) {
+  //             approve();
+  //           } else {
+  //             toast.error("You did not register for the Mandala airdrop");
+  //           }
+  //     }})
+  //     console.log("data whitelist: ", data);
+  //     console.log("error whitelist: ", error);
+  //     console.log("isFetching whitelist: ", isFetching);
+  //   }
+  // };
 
  
 
@@ -190,7 +192,7 @@ const Minter = () => {
               width: "160px",
               borderRadius: "5em",
             }}
-            onClick={() => isWhitelisted()}
+            onClick={() => approve()}
           >
             Approve USDC
           </Button>
@@ -240,18 +242,18 @@ const Minter = () => {
           />
         </Grid>
       </MuiDialog>
-      <MuiDialog open={isInfoVisible} onClose={() => setIsInfoVisible(false)}>
+      <MuiDialog className="dialog-media-query" open={isInfoVisible} onClose={() => setIsInfoVisible(false)}>
       <Grid
           justifyItems="center"
-          sx={{ textAlign: "center", height: "20vh", width: "30vw" }}
+          sx={{ textAlign: "center"}}
         >
           <DialogTitle>
-            Maxja Festival 2022 Ticket
+          Claim your ticket in just 2 steps!
           </DialogTitle>
           <DialogContent>
            <ul style={ulStyle}>
-             <li style={liStyle}>Claim your ticket to the Maxja Festival!</li>
-             <li style={liStyle}>Please have $167 USDC in your MetaMask wallet.</li>
+             <li style={liStyle}>1. Please have $167 USDC in your MetaMask wallet to approve for spending.</li>
+             <li style={liStyle}>2. Mint your NFT ticket.</li>
             <li style={liStyle}>Polygon Network enables cheap and fast transactions, so you don't have to worry about expensive gas fees!</li>
             </ul>
           </DialogContent>

@@ -1,9 +1,9 @@
 async function minter() {
     const MaxjaMinter = await hre.ethers.getContractFactory("MaxjaMinter");
-    const mumbaiUSDCAddress = "0xe11A86849d99F524cAC3E7A0Ec1241828e332C62";
+    const usdcAddress = "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174";
     const whitelist = ["0xBDE6a4c4b28046d37179a52266b792A67894BF88", "0x4c2eD3a67d771F2c6DC0FAE49999B12A12Dd168B"];
     const contract = await MaxjaMinter.deploy(
-      mumbaiUSDCAddress,
+      usdcAddress,
       whitelist
     );
   
