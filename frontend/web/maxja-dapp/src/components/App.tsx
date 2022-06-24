@@ -1,5 +1,5 @@
 import "../scss/App.scss";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, HashRouter } from "react-router-dom";
 import { Navigate } from "react-router";
 import { Grid } from "@mui/material";
 import Footer from "./Footer";
@@ -12,7 +12,7 @@ import ViewNFTs from "./Account/ViewNFTs";
 function App() {
 
   return (
-    <BrowserRouter>
+    <HashRouter>
     <div className="App">
       <Header />
       <Grid container justifyContent="center" alignContent="center" className="background">
@@ -27,7 +27,7 @@ function App() {
       </Grid>
       <Footer />
     </div>
-    </BrowserRouter>
+    </HashRouter>
 
   );
 }
