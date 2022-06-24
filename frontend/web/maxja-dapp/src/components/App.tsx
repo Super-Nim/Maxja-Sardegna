@@ -17,7 +17,7 @@ function App() {
       <Header />
       <Grid container justifyContent="center" alignContent="center" className="background">
       <Routes>
-        {/* <Route path="*" element={<Navigate to="/home" replace/>} /> */}
+        <Route path="*" element={<Navigate to="/home" replace/>} />
         <Route index element={<SignUp/>} />
         <Route path="/home"  element={<SignUp/>} />
         <Route path="/buy-crypto" element={<BuyCrypto/>}/>
