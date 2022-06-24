@@ -15,14 +15,14 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import logo from "../assets/MaxjaLogoTransparent.png";
 import Account from "./Account/Account";
-import home from "../assets/home.png";
-import buyCrypto from "../assets/buyCrypto.png";
-import mintNFT from "../assets/mintNFT.png";
-import viewNFTs from "../assets/viewNFT.png";
-import homeH from "../assets/homeH.png";
-import buyCryptoH from "../assets/buyCryptoH.png";
-import mintNFTH from "../assets/mintNFTH.png";
-import viewNFTsH from "../assets/viewNFTH.png";
+// import home from "../assets/home.png";
+// import buyCrypto from "../assets/buyCrypto.png";
+// import mintNFT from "../assets/mintNFT.png";
+// import viewNFTs from "../assets/viewNFT.png";
+// import homeH from "../assets/homeH.png";
+// import buyCryptoH from "../assets/buyCryptoH.png";
+// import mintNFTH from "../assets/mintNFTH.png";
+// import viewNFTsH from "../assets/viewNFTH.png";
 import { useEffect, useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
 import NativeBalance from "./Account/NativeBalance";
@@ -246,7 +246,7 @@ const Header = () => {
                   onMouseLeave={() => setOnHomeHover(false)}
                 >
                   <img
-                    src={onHomeHover ? homeH : home}
+                    // src={onHomeHover ? homeH : home}
                     alt="home"
                     style={navImage}
                   />
@@ -271,7 +271,7 @@ const Header = () => {
                   onMouseLeave={() => setOnBuyCryptoHover(false)}
                 >
                   <img
-                    src={onBuyCryptoHover ? buyCryptoH : buyCrypto}
+                    // src={onBuyCryptoHover ? buyCryptoH : buyCrypto}
                     alt="home"
                     style={navImage}
                   />
@@ -295,7 +295,7 @@ const Header = () => {
                   onMouseLeave={() => setOnMintNFTHover(false)}
                 >
                   <img
-                    src={onMintNFTHover ? mintNFTH : mintNFT}
+                    // src={onMintNFTHover ? mintNFTH : mintNFT}
                     alt="home"
                     style={navImage}
                   />
@@ -320,7 +320,7 @@ const Header = () => {
                   onMouseLeave={() => setOnViewNFTsHover(false)}
                 >
                   <img
-                    src={onViewNFTsHover ? viewNFTsH : viewNFTs}
+                    // src={onViewNFTsHover ? viewNFTsH : viewNFTs}
                     alt="home"
                     style={viewNFTImage}
                   />
