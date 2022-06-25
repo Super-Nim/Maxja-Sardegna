@@ -30,7 +30,7 @@ const Home = () => {
         {
           title: "MINT NFT",
           image: bigMintNFT,
-          description: "This NFT is your Ticket to Maxja 2022 also gives you access to a % of discount for accommodation at the Venue!",
+          description: "This NFT is your Ticket to the Maxja Festival 2022, and also gives you access to a 10% discount for accommodation at the Venue!",
           background: "",
           buttonText: "MINT NFT",
           to: "/mint-nft"
@@ -38,7 +38,7 @@ const Home = () => {
         {
           title: "VIEW NFTs",
           image: bigViewNFTs,
-          description: "“The Deer” Deer have sharp hearing, vision, and sense of smell. They can see approximately 360 degrees. Because of their potent sensitivity, deer symbolize instincts and intuition.",
+          description: "View your NFTs! All NFTs you own on the Polygon network will be visible here.",
           background: "",
           buttonText: "VIEW NFTs",
           to: "/view-nfts"
