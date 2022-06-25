@@ -172,9 +172,9 @@ const ViewNFTs = () => {
     <Grid
       container
       justifyContent="center"
+      className="view-nft-media-query"
       sx={{
         overflowY: "scroll",
-        height: "100%",
         width: "80%",
         padding: "10px",
         gap: "5em",
@@ -227,7 +227,7 @@ const ViewNFTs = () => {
                 More
               </CardActions>
               <MuiDialog
-              className="dialog-media-query"
+              // className="dialog-media-query"
                 open={isInfoVisible}
                 onClose={() => setIsInfoVisible(false)}
               >

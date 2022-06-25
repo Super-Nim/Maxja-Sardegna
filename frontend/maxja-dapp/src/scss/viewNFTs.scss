@@ -9,6 +9,10 @@
     height: 70vh;
 }
 
+.view-nft-media-query {
+    height: 100%;
+}
+
 
 
 @media only screen and (max-width: 490px) {
@@ -17,5 +21,10 @@
         height: 40vh;
         width: 40vh;
     }
+
+    .view-nft-media-query {
+        height: 70vh;
+    }
+    
 
 }

@@ -224,7 +224,7 @@ const Minter = () => {
           </Button>
         )}
       </CardActions>
-      <MuiDialog className="dialog-media-query" open={isInfoVisible} onClose={() => setIsInfoVisible(false)}>
+      <MuiDialog open={isInfoVisible} onClose={() => setIsInfoVisible(false)}>
       <Grid
           justifyItems="center"
           sx={{ textAlign: "center"}}
