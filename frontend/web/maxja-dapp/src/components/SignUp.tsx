@@ -12,6 +12,7 @@ import {
   FormControlLabel,
   TextField,
 } from "@mui/material";
+import "../scss/SignUp.scss";
 import "../scss/Home.scss";
 import backgroundMaxja from "../assets/backgroundMaxja.png";
 import { useMoralis } from "react-moralis";
@@ -144,9 +145,9 @@ const SignUp = () => {
               display: "grid",
               justifyContent: "center",
               alignSelf: "center",
-              height: "50vh",
             }}
-            className="card"
+            container
+            className="card-media-query"
           >
             <Card
               sx={{

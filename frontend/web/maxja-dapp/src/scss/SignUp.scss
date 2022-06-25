@@ -1,0 +1,16 @@
+
+
+.card-media-query {
+    justify-content: center;
+    height: 50vh;
+}
+
+@media only screen and (max-width: 490px) {
+
+
+    .card-media-query {
+        height: 70vh;
+    }
+    
+
+}
