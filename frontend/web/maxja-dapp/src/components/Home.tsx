@@ -23,7 +23,7 @@ const Home = () => {
             title: "BUY CRYPTO",
             image: bigBuyCrypto,
             background: "#741918",
-            description: "Get some Funds! Purchase $100 USDC to MINT your NFT. Remember to have at least 1 MATIC for gas fees!",
+            description: "Get some Funds! Purchase $167 USDC to MINT your NFT. Remember to have at least 1 MATIC for gas fees!",
             buttonText: "BUY CRYPTO",
             to: "/buy-crypto"
         },
