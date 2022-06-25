@@ -50,10 +50,13 @@ const ulStyle = {
   padding: 0
 }
 
+const emptyState = {
+  title: "Please connect your MetaMask before minting"
+}
+
 const Minter = () => {
   /// @dev useWeb3ExecuteFunction function for write/call methods
   const { data, error, fetch, isFetching } = useWeb3ExecuteFunction();
-  const [isDialogVisible, setIsDialogVisible] = useState(false);
   const [isInfoVisible, setIsInfoVisible] = useState(false);
   const [showMint, setShowMint] = useState(false);
   const { authenticate, account } = useMoralis();
@@ -111,6 +114,40 @@ const Minter = () => {
       }
     });
   };
+
+  if (!account) {
+    return (
+      <Grid container className="empty-nft-media-query">
+      <Card
+        sx={{
+          display: "grid",
+          justifyItems: "center",
+          height: "50vh",
+          width: "385px",
+          borderRadius: "60px !important",
+        }}
+      >
+        <CardHeader
+          title={emptyState.title}
+          titleTypographyProps={{ align: "center" }}
+        />
+        <img
+          src={MetaMask}
+          style={metamaskStyle}
+          alt="MetaMask"
+          onClick={async () => {
+            try {
+              await authenticate();
+              window.localStorage.setItem("metamask", "injected");
+            } catch (e) {
+              console.error(e);
+            }
+          }}
+        />
+      </Card>
+      </Grid>
+    );
+  } 
  
 
   return (
@@ -187,34 +224,7 @@ const Minter = () => {
           </Button>
         )}
       </CardActions>
-      <MuiDialog
-        open={isDialogVisible}
-        onClose={() => setIsDialogVisible(false)}
-      >
-        <Grid
-          justifyItems="center"
-          sx={{ textAlign: "center", height: "20vh", width: "30vw" }}
-        >
-          <DialogTitle>
-            Please Connect your MetaMask Wallet before minting
-          </DialogTitle>
-          <img
-            src={MetaMask}
-            style={metamaskStyle}
-            alt="MetaMask"
-            onClick={async () => {
-              try {
-                await authenticate();
-                window.localStorage.setItem("metamask", "injected");
-                setIsDialogVisible(false);
-              } catch (e) {
-                console.error(e);
-              }
-            }}
-          />
-        </Grid>
-      </MuiDialog>
-      <MuiDialog className="dialog-media-query" open={isInfoVisible} onClose={() => setIsInfoVisible(false)}>
+      <MuiDialog open={isInfoVisible} onClose={() => setIsInfoVisible(false)}>
       <Grid
           justifyItems="center"
           sx={{ textAlign: "center"}}
