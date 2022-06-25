@@ -35,7 +35,7 @@ The Maxja Festival 2022 ticket is available as an NFT - with a 10% discount on a
 
 The tickets are priced at $167 USDC and include entry, food, and accomodation.
 
-![Uploading minter-desktop.png…]()
+![minter-desktop](https://user-images.githubusercontent.com/64858288/175784118-e1eca036-01e1-4db9-a33b-047253a70057.png)
 
 ## View NFTs (mobile)
 
