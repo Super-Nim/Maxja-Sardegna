@@ -10,7 +10,7 @@ contract MaxjaAirdrop is ERC721URIStorage, Ownable {
     Counters.Counter public tokenIds;
     mapping(address => bool) public isVerified;
 
-    constructor() ERC721("Mandala", "MND") {}
+    constructor() ERC721("The Mandala", "MND") {}
 
     function sendNFT(address to, string memory tokenURI)
         onlyOwner()
