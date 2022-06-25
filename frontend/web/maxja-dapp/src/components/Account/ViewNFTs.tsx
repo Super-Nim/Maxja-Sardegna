@@ -101,11 +101,10 @@ const ViewNFTs = () => {
       // if (!Moralis?.["Plugins"]?.["covalent"]) return;
       // // Moralis.initPlugins();
       // // setCovalentApi(Moralis.Plugins.covalent);
-      const balance = await getNFTBalances({});
+      const balance = await getNFTBalances({ params: { chain: "polygon", address: account!} });
       setBalance(balance);
-      if (balance?.result) {
-        console.log("NFT Balance: ", balance?.result[2]?.metadata);
-      }
+      console.log('NFT BALANCE: ', balance);
+      
     };
     init();
   }, []);

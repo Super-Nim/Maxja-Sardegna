@@ -100,45 +100,17 @@ const Minter = () => {
   const mint = async () => {
     fetch({
       params: mintNFT,
-      onSuccess: (tx: any) => {
+      onSuccess: async (tx: any) => {
         toast.success("Your NFT is minting!");
         return tx.wait().then(() => {
           toast.success("NFT minted!");
         });
       },
+      onError: (tx: any) => {
+          toast.error("You are NOT whitelisted!");
+      }
     });
   };
-  // TODO: need to fetch whitelist -- NO NEED SOLIDITY HAS REQUIRE STATEMENT ALREADY
-  // create a for loop, each time fetch the whiteList[0], [1], etc - if address !== account --> toast.error() else --> approve USDC
-  // const isWhitelisted = async () => {
-  //   if (!account) {
-  //     setIsDialogVisible(true);
-  //   } else {
-
-
-
-  //     fetch({
-  //       params: getWhitelistLength,
-  //       onSuccess: async (tx: any) => {
-  //         /// @dev returns BN type
-  //         const length = tx.toString();
-  //         // 
-  //         console.log('length: ', length);
-  //           const isWhitelisted = length.some((address: string) => {
-  //             return address === account;
-  //           });
-  //           if (isWhitelisted) {
-  //             approve();
-  //           } else {
-  //             toast.error("You did not register for the Mandala airdrop");
-  //           }
-  //     }})
-  //     console.log("data whitelist: ", data);
-  //     console.log("error whitelist: ", error);
-  //     console.log("isFetching whitelist: ", isFetching);
-  //   }
-  // };
-
  
 
   return (
