@@ -12,6 +12,7 @@ import {
 import { useEffect, useState } from "react";
 import { useMoralis, useNFTBalances } from "react-moralis";
 import MetaMask from "../../assets/metamaskWallet.png";
+import "../../scss/viewNFTs.scss";
 
 type ISetInfoProps = {
   index: number;
@@ -116,6 +117,7 @@ const ViewNFTs = () => {
     );
   } else if (!account) {
     return (
+      <Grid container className="empty-nft-media-query">
       <Card
         sx={{
           display: "grid",
@@ -143,10 +145,11 @@ const ViewNFTs = () => {
           }}
         />
       </Card>
+      </Grid>
     );
   } else if (balance?.result?.length === 0) {
     return (
-      <Grid className="empty-nft-media-query" justifyContent="center" alignContent="center">
+      <Grid container className="empty-nft-media-query">
       <Card
         sx={{
           display: "grid",
