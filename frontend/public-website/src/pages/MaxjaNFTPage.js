@@ -5,7 +5,7 @@ import Footer from "../components/Footer";
 const MaxjaNFTPage = () => {
   const openApp = (e) => {
     e.preventDefault();
-    window.open("https://maxja-project.nft");
+    window.open("https://lucky-sun-8549.on.fleek.co/");
   };
   return (
     <>
