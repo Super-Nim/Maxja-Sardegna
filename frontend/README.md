@@ -7,8 +7,11 @@ This website informs the user of the festival, its history, and its acceptance o
 
 # Maxja Dapp
 
-The Dapp is more than just an NFT minter. It provides a guided experience from onboarding the user, to purchasing crypto from their bank card, 
-to minting their NFT ticket - and FINALLY viewing their ticket as proof of ownership in the Dapp.
+The Dapp is more than just an NFT minter:
+1. It provides a guided experience from onboarding the user
+2. to purchasing crypto from their bank card, 
+3. to minting their NFT ticket
+4. to finally viewing their ticket as proof of ownership in the Dapp.
 
 The Dapp enables a smooth transition from web 2 to web 3 thanks to familiar username/email registration and the fiat on-ramper. 
 
