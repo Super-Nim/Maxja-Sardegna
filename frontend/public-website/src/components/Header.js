@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const Navigation = () => {
   const launchApp = (e) => {
     e.preventDefault();
-    window.open("https://maxja-project.nft");
+    window.open("https://lucky-sun-8549.on.fleek.co/");
   };
   return (
     <nav className="navbar navbar-expand-lg navbar-light">
