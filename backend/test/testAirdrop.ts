@@ -5,7 +5,7 @@ import { expect } from "chai";
 import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
 import { deployContract } from "ethereum-waffle";
 
-xdescribe("Maxja Airdrop", () => {
+describe("Maxja Airdrop", () => {
   let contract: MaxjaAirdrop;
   let owner: SignerWithAddress;
   let acc1: SignerWithAddress;
@@ -13,7 +13,7 @@ xdescribe("Maxja Airdrop", () => {
   let acc1Address: string;
   let acc2Address: string;
   // TODO: UPDATE URI ONCE IGNACIO CONFIRMS DETAILS
-  let tokenURI = "https://gateway.pinata.cloud/ipfs/QmXm7M7RfQBGEvoH8cAAQ8myoBwhn9R7j3qdrRZohakAdD";
+  let tokenURI = "https://bafkreigwifcp3edbcjnzzhf6ztcd5roy2km356g6667gcxzpzgr3bkob74.ipfs.nftstorage.link/";
 
   beforeEach(async () => {
     [owner, acc1, acc2] = (await ethers.getSigners());
@@ -28,7 +28,7 @@ xdescribe("Maxja Airdrop", () => {
   describe("Setup", () => {
     it("should be named Mandala", async () => {
       let name = await contract.name();
-      expect(name).to.equal("Mandala");
+      expect(name).to.equal("The Mandala");
     });
   
     it("should have the symbol MND", async () => {

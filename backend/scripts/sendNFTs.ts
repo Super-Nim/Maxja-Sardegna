@@ -1,4 +1,4 @@
-/// @notice list of REGISTERED users with name + email
+/// @notice this will be a list of REGISTERED users with name + email for the live Dapp
 const addresses = [
     "0xBDE6a4c4b28046d37179a52266b792A67894BF88",
     "0x4c2eD3a67d771F2c6DC0FAE49999B12A12Dd168B",
@@ -14,7 +14,7 @@ async function sendNFTs() {
   const nonce = await signer0.getTransactionCount();
   for(let i = 0; i < addresses.length; i++) {
     // WAITING FOR IGNACIO TO CONFIRM AIRDROP METADATA DETAILS...
-    const tokenURI = "https://gateway.pinata.cloud/ipfs/QmXm7M7RfQBGEvoH8cAAQ8myoBwhn9R7j3qdrRZohakAdD";
+    const tokenURI = "https://bafkreigwifcp3edbcjnzzhf6ztcd5roy2km356g6667gcxzpzgr3bkob74.ipfs.nftstorage.link/";
     await nft.awardItem(addresses[i], tokenURI,  {
       nonce: nonce + i
     });
