@@ -1,4 +1,4 @@
-# maxja-sardegna
+# Maxja-Sardegna
 
 ## Project Aim
 
@@ -25,5 +25,8 @@ The Dapp has a specific user flow, highlighted in the toolbar itself:
 ![mobile-friendly](https://user-images.githubusercontent.com/64858288/175783151-2cf17a35-e85d-4be1-94fc-427d581245b6.png)
 
 
+## Directories
 
+The [**backend**](https://github.com/Super-Nim/Maxja-Sardegna/tree/main/backend) folder contains all of the Solidity smart contracts, unit tests and deployment scripts, in hardhat.
 
+The [**frontend**](https://github.com/Super-Nim/Maxja-Sardegna/tree/main/frontend) folder contains the public website and the maxja-dapp.
