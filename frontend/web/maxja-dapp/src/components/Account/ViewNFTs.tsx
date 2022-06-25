@@ -81,10 +81,9 @@ const ViewNFTs = () => {
   const metadata: IMetadata[] = [];
   // TODO: defined param type for description of current NFT
   const SetInfo = (index: ISetInfoProps | number) => {
-    if (!index) {
+    if (index === undefined) {
       return;
     }
-    console.log('INDEX SELECTED: ', index)
     const selected = metadata[index as number];
     console.log("SELECTED: ", selected)
     setCurrentMetadata(selected);
