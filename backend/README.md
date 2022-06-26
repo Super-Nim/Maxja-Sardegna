@@ -19,7 +19,7 @@ The contract is deployed by the Maxja founder, Ignacio, and the following occurs
 2. The Mandala NFT is minted, its token ID and URI is set
 3. The receiver's address is included in a "isVerified" mapping, to be whitelisted for the incoming minter contract
 
-```
+```javascript
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.1;
 
@@ -56,7 +56,7 @@ contract MaxjaAirdrop is ERC721URIStorage, Ownable {
 
 This contract inherits ERC1155, as all ticket NFTs serve the same functionality and are not unique.
 
-```
+```javascript
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.1;
 
@@ -117,4 +117,25 @@ contract MaxjaMinter is ERC1155, Ownable {
 }
 
 ```
+
+# Hardhat
+
+The smart contracts were written on remix, but tested and deployed, on Hardhat.
+
+Head over to the [test](https://github.com/Super-Nim/Maxja-Sardegna/tree/main/backend/test) folder to view the unit tests. They are written in TypeScript to enable secure and fluent testing.
+
+## testAirdrop.ts
+
+The [testAirdrop](https://github.com/Super-Nim/Maxja-Sardegna/blob/main/backend/test/testAirdrop.ts) uses a linear testing sequence as it only has one relevant function in the contract.
+
+
+## testMinter.ts
+
+The [testMinter](https://github.com/Super-Nim/Maxja-Sardegna/blob/main/backend/test/testMinter.ts) is more complex and implements mainnet forking, fixtures, and a more involved "beforeEach()" hook.
+
+This contract uses Hardhat's mainnet forking feature for a few reasons:
+
+1. Using USDC, an ERC-20 token, required "real" USDC to be transferred from an account. 
+2. Instead of creating a mock contract, it was faster to emulate a USDC whale and transfer the exact amount to an account for testing
+
 
