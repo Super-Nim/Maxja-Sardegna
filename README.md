@@ -16,13 +16,13 @@ The Dapp has a specific user flow, highlighted in the toolbar itself:
 
 ## Screenshots
 
-**Home page (Desktop)**
-![home page ](https://user-images.githubusercontent.com/64858288/175783125-aa624604-219a-41c9-8dad-083b0b49ba24.png)
+**Minter page (Desktop)**
+![minter-desktop](https://user-images.githubusercontent.com/64858288/175805695-4d713988-fe7c-487b-9d04-c73ebb9a581e.png)
 
 
 **The application is mobile-friendly - Minter page (Iphone 12 pro)**
 
-![mobile-friendly](https://user-images.githubusercontent.com/64858288/175783151-2cf17a35-e85d-4be1-94fc-427d581245b6.png)
+![view-nfts-mobile](https://user-images.githubusercontent.com/64858288/175805651-434fc46b-dd48-43dd-b5a0-26ed24d18e5b.png)
 
 
 ## Directories
