@@ -30,7 +30,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 contract MaxjaAirdrop is ERC721URIStorage, Ownable {
     /// @notice use Counter library to track and increment NFT IDs
     using Counters for Counters.Counter;
-    Counters.Counter public tokenIds;
+    Counters.Counter private tokenIds;
     /// @notice whitelist each recipient of the NFT
     mapping(address => bool) public isVerified;
     /// @notice the name and symbol are defined here
@@ -124,18 +124,70 @@ The smart contracts were written on remix, but tested and deployed, on Hardhat.
 
 Head over to the [test](https://github.com/Super-Nim/Maxja-Sardegna/tree/main/backend/test) folder to view the unit tests. They are written in TypeScript to enable secure and fluent testing.
 
-## testAirdrop.ts
+## testAirdrop.ts
 
 The [testAirdrop](https://github.com/Super-Nim/Maxja-Sardegna/blob/main/backend/test/testAirdrop.ts) uses a linear testing sequence as it only has one relevant function in the contract.
 
 
 ## testMinter.ts
 
-The [testMinter](https://github.com/Super-Nim/Maxja-Sardegna/blob/main/backend/test/testMinter.ts) is more complex and implements mainnet forking, fixtures, and a more involved "beforeEach()" hook.
+The [testMinter](https://github.com/Super-Nim/Maxja-Sardegna/blob/main/backend/test/testMinter.ts) is more complex and implements **mainnet forking**, a more involved **beforeEach()** hook, and **fixtures**.
 
-This contract uses Hardhat's mainnet forking feature for a few reasons:
+### Mainnet forking
+
+This contract uses Hardhat's **mainnet forking** feature for a few reasons:
 
 1. Using USDC, an ERC-20 token, required "real" USDC to be transferred from an account. 
 2. Instead of creating a mock contract, it was faster to emulate a USDC whale and transfer the exact amount to an account for testing
+
+The **beforeEach()** hook 
+
+```typescript
+await hre.network.provider.request({
+        method: "hardhat_impersonateAccount",
+        params: [USDC_WHALE],
+      });
+
+```
+
+3. a signer object is defined and used to transfer $167 of USDC (167 x 10**6) to the test account (acc1Address)
+```
+let whaleSigner = ethers.provider.getSigner(USDC_WHALE);
+
+    /// @notice get usdc contract's address and pass to MaxjaMaxjaMinter contract
+    /// @dev ERC1155's constructor arg is HARD CODED into MaxjaMaxjaMinter contract, no need to pass through in testing
+    usdcContract = await ethers.getContractAt(
+      IERC20_SOURCE,
+      USDC_ADDRESS,
+      whaleSigner
+    );
+
+    /// @dev can check whale balance => await usdcContract.connect(whaleSigner).balanceOf(whaleSigner._address);
+    /// @notice fund acc1 with USDC from whale's wallet.
+    usdcAddress = usdcContract.address;
+    await usdcContract
+      .connect(whaleSigner)
+      .transfer(acc1Address, usdcAmount)
+    /// @notice balance of acc1 = 100 USDC
+    acc1Balance = await usdcContract.connect(acc1).balanceOf(acc1Address);
+
+```
+
+### Fixtures
+
+**Fixtures** enable a consitent scenario to execute before **specific** unit tests, as opposed to **beforeEach()** hook.
+
+The fixture below is only used when we want to test the contract from the **user's** perspective, otherwise no fixture is required.
+
+```
+/// @notice set acc1 to default msg.sender and approve minter contract to spend USDC
+  const acc1Fixture = async () => {
+    minterContract = minterContract.connect(acc1);
+    usdcContract = usdcContract.connect(acc1);
+    await usdcContract.approve(minterContract.address, usdcAmount);
+    return { minterContract, usdcContract };
+  }
+```
+
 
 
