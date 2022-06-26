@@ -124,6 +124,10 @@ The smart contracts were written on remix, but tested and deployed, on Hardhat.
 
 Head over to the [test](https://github.com/Super-Nim/Maxja-Sardegna/tree/main/backend/test) folder to view the unit tests. They are written in TypeScript to enable secure and fluent testing.
 
+The contract ABIs generated via compilation, were used in the frontend to make contract calls.
+
+# Unit Tests
+
 ## testAirdrop.ts
 
 The [testAirdrop](https://github.com/Super-Nim/Maxja-Sardegna/blob/main/backend/test/testAirdrop.ts) uses a linear testing sequence as it only has one relevant function in the contract.
@@ -189,7 +193,7 @@ The fixture below is only used when we want to test the contract from the **user
   }
 ```
 
-## Scripts
+# Scripts
 
 The Hardhat scripts are written in Typescript and similarly start of simple, and become more complex.
 
