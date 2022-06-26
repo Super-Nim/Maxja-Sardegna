@@ -13,7 +13,6 @@ async function sendNFTs() {
   const signer0 = await ethers.provider.getSigner(0);
   const nonce = await signer0.getTransactionCount();
   for(let i = 0; i < addresses.length; i++) {
-    // WAITING FOR IGNACIO TO CONFIRM AIRDROP METADATA DETAILS...
     const tokenURI = "https://bafkreigwifcp3edbcjnzzhf6ztcd5roy2km356g6667gcxzpzgr3bkob74.ipfs.nftstorage.link/";
     await nft.awardItem(addresses[i], tokenURI,  {
       nonce: nonce + i

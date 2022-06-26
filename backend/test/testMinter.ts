@@ -65,7 +65,7 @@ describe("MaxjaMinter", () => {
     ])) as MaxjaMinter;
   });
 
-  /// @notice set acc1 to default msg.sender and approve minter contract to spend 100 USDC
+  /// @notice set acc1 to default msg.sender and approve minter contract to spend USDC
   const acc1Fixture = async () => {
     minterContract = minterContract.connect(acc1);
     usdcContract = usdcContract.connect(acc1);
