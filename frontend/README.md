@@ -1,3 +1,10 @@
+# frontend
+
+The frontend is split into two parts:
+
+1. [Public Website](#Public-Website)
+2. [Maxja Dapp](#Maxja-Dapp)
+
 # Public Website
 
 This website informs the user of the festival, its history, and its acceptance of Cryptocurrency!
