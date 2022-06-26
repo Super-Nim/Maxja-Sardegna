@@ -1,5 +1,5 @@
 import "./App.css";
-import { BrowserRouter } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 import CommunityPage from "./pages/CommunityPage";
 import MaxjaNFTPage from "./pages/MaxjaNFTPage";
 // import FAQPage from "./pages/FAQPage";
@@ -10,7 +10,7 @@ import { Switch, Route } from "react-router-dom";
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <div className="App">
         <Switch>
           <Route path="/" exact component={CommunityPage} />
@@ -21,7 +21,7 @@ function App() {
           <Route component={CommunityPage} />
         </Switch>
       </div>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
