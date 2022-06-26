@@ -189,5 +189,77 @@ The fixture below is only used when we want to test the contract from the **user
   }
 ```
 
+## Scripts
+
+The Hardhat scripts are written in Typescript and similarly start of simple, and become more complex.
+
+### deployAirdrop.ts
+
+The airdrop script is simple. The example below shows how the constructor parameters are passed through.
+
+```typescript
+async function airdrop() {
+    const MaxjaAirdrop = await hre.ethers.getContractFactory("MaxjaAirdrop");
+    const contract = await MaxjaAirdrop.deploy();
+  
+    await contract.deployed();
+  
+    console.log("Mandala NFT deployed to:", contract.address);
+  }
+```
+
+### sendNFTs.ts
+
+This script is more involved, since the contract requires an array of addresses and token metadata:
+
+```typescript
+/// @notice this will be a list of REGISTERED users with name + email for the live Dapp
+const addresses = [
+    "0xBDE6a4c4b28046d37179a52266b792A67894BF88",
+    "0x4c2eD3a67d771F2c6DC0FAE49999B12A12Dd168B",
+    "0xC1484b53eB3A47e2007AE0E910ebB6Cb5eC7000C",
+    "0x06C0D071f8666755Ea705aa6F4d12F7B6345B6fD",
+];
+const existingContractAddr = "0x02b31a30f391658e5bc6831Cef813A506f9e1Af0";
+
+async function sendNFTs() {
+  const nft = await hre.ethers.getContractAt("MaxjaAirdrop", existingContractAddr);
+
+  const signer0 = await ethers.provider.getSigner(0);
+  const nonce = await signer0.getTransactionCount();
+  for(let i = 0; i < addresses.length; i++) {
+    const tokenURI = "https://bafkreigwifcp3edbcjnzzhf6ztcd5roy2km356g6667gcxzpzgr3bkob74.ipfs.nftstorage.link/";
+    await nft.awardItem(addresses[i], tokenURI,  {
+      nonce: nonce + i
+    });
+  }
+
+  console.log("Minting is complete!");
+}
+```
+
+### deployMinter.ts
+
+Back to simplicity. The minter contract only requires the whitelist of addresses and usdcAddress, because the tokenURI is already defined in the ERC1155 solidity smart contract.
+
+```
+async function minter() {
+    const MaxjaMinter = await hre.ethers.getContractFactory("MaxjaMinter");
+    const usdcAddress = "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174";
+    const whitelist = ["0xBDE6a4c4b28046d37179a52266b792A67894BF88", "0x4c2eD3a67d771F2c6DC0FAE49999B12A12Dd168B"];
+    const contract = await MaxjaMinter.deploy(
+      usdcAddress,
+      whitelist
+    );
+  
+    await contract.deployed();
+  
+    console.log("Maxja Minter deployed to:", contract.address);
+  }
+```
+
+
+
+
 
 
