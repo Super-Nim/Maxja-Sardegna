@@ -7,7 +7,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract MaxjaAirdrop is ERC721URIStorage, Ownable {
     using Counters for Counters.Counter;
-    Counters.Counter public tokenIds;
+    Counters.Counter private tokenIds;
     mapping(address => bool) public isVerified;
 
     constructor() ERC721("The Mandala", "MND") {}
