@@ -1,7 +1,5 @@
 # Backend
 
-The Solidty smart contracts are included in the [/contracts](https://github.com/Super-Nim/Maxja-Sardegna/tree/main/backend/contracts) directory.
-
 The contracts used are:
 
 1. [MaxjaAirdrop](https://github.com/Super-Nim/Maxja-Sardegna/blob/main/backend/contracts/MaxjaAirdrop.sol)
