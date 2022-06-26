@@ -1,10 +1,19 @@
 # Maxja-Sardegna
 
+The Maxja Festival hosted in *Sardegna (Italian spelling)* is an annual gathering that brings together a small conscious community (the young, elders, kids and their families) in the beautiful island of Sardinia. 
+
+The founder, Ignacio, and his marketer, Mika will explain further:
+
+
+
+https://user-images.githubusercontent.com/64858288/175806515-790f47c6-b54c-4130-a666-5a96ceab4aca.mov
+
+
 ## Project Aim
 
-This is a Live NFT Minter for the Maxja Festival in 2022, hosted here: https://lucky-sun-8549.on.fleek.co/
+This is a live NFT Minter for the Maxja Festival in 2022, hosted here: https://lucky-sun-8549.on.fleek.co/
 
-The public website explains the festival and the relevance of the Dapp, hosted here: https://empty-shape-3139.on.fleek.co/ 
+The public website outlines the festival and the relevance of the Dapp, hosted here: https://empty-shape-3139.on.fleek.co/ 
 
 The Dapp has a specific user flow, highlighted in the toolbar itself:
 
