@@ -7,7 +7,7 @@ The contracts used are:
 1. [MaxjaAirdrop](https://github.com/Super-Nim/Maxja-Sardegna/blob/main/backend/contracts/MaxjaAirdrop.sol)
 2. [MaxjaMinter](https://github.com/Super-Nim/Maxja-Sardegna/blob/main/backend/contracts/MaxjaMinter.sol)
 
-The Hardhat's installation, tests, and scripts are [here](# Hardhat)
+The Hardhat's installation, tests, and scripts are [here](#Hardhat)
 
 # Solidity
 
