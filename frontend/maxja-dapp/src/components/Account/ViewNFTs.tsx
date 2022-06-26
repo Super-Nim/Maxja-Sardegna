@@ -86,6 +86,7 @@ const ViewNFTs = () => {
       return;
     }
     const selected = metadata[index as number];
+    console.log("METADATA ARR: ", metadata)
     console.log("SELECTED: ", selected)
     setCurrentMetadata(selected);
     setIsInfoVisible(true);
@@ -103,7 +104,7 @@ const ViewNFTs = () => {
       // // setCovalentApi(Moralis.Plugins.covalent);
       const balance = await getNFTBalances({ params: { chain: "polygon", address: account!} });
       setBalance(balance);
-      console.log('NFT BALANCE: ', balance);
+      // console.log('NFT BALANCE: ', balance);
       
     };
     init();
@@ -183,67 +184,74 @@ const ViewNFTs = () => {
       {balance &&
         balance.result?.map((nft) => {
           /// @notice convert metadata into JSON obj in loop
+          if (!nft.metadata) {
+            return (
+              <></>
+            )
+          } 
+
           const tokenURI = JSON.parse(nft.metadata as string);
           // SetInfo(tokenURI);
+
           metadata.push(tokenURI);
-          const selected = balance?.result?.indexOf(nft);
-          // console.log("metadata.push ", metadata);
-          // console.log("indexOf nft: ", balance?.result?.indexOf(nft));
+          const selected = metadata.indexOf(tokenURI);
+
           return (
             <Card
-              key={nft.token_id}
+            key={nft.token_id}
+            sx={{
+              display: "grid",
+              justifyContent: "center",
+              height: "500px",
+              width: "320px",
+              borderRadius: "60px !important",
+              boxShadow: "0px 0px 6px 10px #00000005",
+            }}
+          >
+            <CardHeader
+              title={nft?.name || tokenURI?.name}
+              titleTypographyProps={{ textAlign: "center" }}
+            />
+            <hr style={hrStyle} />
+
+            <CardMedia
+              component="img"
+              image={tokenURI?.image}
               sx={{
-                display: "grid",
-                justifyContent: "center",
-                height: "500px",
-                width: "320px",
-                borderRadius: "60px !important",
-                boxShadow: "0px 0px 6px 10px #00000005",
+                justifySelf: "center",
+                height: "280px !important",
+                width: "280px !important",
               }}
+            ></CardMedia>
+            <CardActions
+              sx={{
+                justifySelf: "center",
+                color: "#C5716B",
+                cursor: "pointer",
+              }}
+              onClick={() => SetInfo(selected!)}
             >
-              <CardHeader
-                title={nft?.name || tokenURI?.name}
-                titleTypographyProps={{ textAlign: "center" }}
-              />
-              <hr style={hrStyle} />
-
-              <CardMedia
-                component="img"
-                image={tokenURI.image}
-                sx={{
-                  justifySelf: "center",
-                  height: "280px !important",
-                  width: "280px !important",
-                }}
-              ></CardMedia>
-              <CardActions
-                sx={{
-                  justifySelf: "center",
-                  color: "#C5716B",
-                  cursor: "pointer",
-                }}
-                onClick={() => SetInfo(selected!)}
+              More
+            </CardActions>
+            <MuiDialog
+            // className="dialog-media-query"
+              open={isInfoVisible}
+              onClose={() => setIsInfoVisible(false)}
+            >
+              <Grid
+                justifyItems="center"
+                sx={{ textAlign: "center", height: "20vh", width: "30vw" }}
               >
-                More
-              </CardActions>
-              <MuiDialog
-              // className="dialog-media-query"
-                open={isInfoVisible}
-                onClose={() => setIsInfoVisible(false)}
-              >
-                <Grid
-                  justifyItems="center"
-                  sx={{ textAlign: "center", height: "20vh", width: "30vw" }}
-                >
-                  <DialogTitle>{currentMetadata?.name}</DialogTitle>
-                  <DialogContent>{currentMetadata?.description}</DialogContent>
-                </Grid>
-              </MuiDialog>
+                <DialogTitle>{currentMetadata?.name}</DialogTitle>
+                <DialogContent>{currentMetadata?.description}</DialogContent>
+              </Grid>
+            </MuiDialog>
 
-              {/* {isInfoVisible ? <SetInfo index={selected}/> : <></> } */}
-              {/* {isInfoVisible ? <SetInfo tokenURI={tokenURI}/> : <></>} */}
-            </Card>
-          );
+            {/* {isInfoVisible ? <SetInfo index={selected}/> : <></> } */}
+            {/* {isInfoVisible ? <SetInfo tokenURI={tokenURI}/> : <></>} */}
+          </Card>
+        );
+         
         })}
       {/* <SetInfo index={0}/> */}
     </Grid>
