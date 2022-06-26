@@ -126,7 +126,7 @@ Head over to the [test](https://github.com/Super-Nim/Maxja-Sardegna/tree/main/ba
 
 The contract ABIs generated via compilation, were used in the frontend to make contract calls.
 
-# Unit Tests
+# Unit Tests
 
 ## testAirdrop.ts
 
