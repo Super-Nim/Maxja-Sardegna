@@ -122,6 +122,12 @@ contract MaxjaMinter is ERC1155, Ownable {
 
 # Hardhat
 
+install dependencies:
+
+```
+yarn install
+```
+
 The smart contracts were written on remix, but tested and deployed, on Hardhat.
 
 Head over to the [test](https://github.com/Super-Nim/Maxja-Sardegna/tree/main/backend/test) folder to view the unit tests. They are written in TypeScript to enable secure and fluent testing.
