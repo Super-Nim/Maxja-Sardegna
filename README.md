@@ -1,6 +1,6 @@
 # Maxja-Sardegna
 
-The Maxja Festival hosted in *Sardegna (Italian spelling)* is an annual gathering that brings together a small conscious community (the young, elders, kids and their families) in the beautiful island of Sardinia. 
+The Maxja Festival hosted in **Sardegna** *(Italian spelling)* is an annual gathering that brings together a small conscious community (the young, elders, kids and their families) in the beautiful island of Sardinia. 
 
 The founder, Ignacio, and his marketer, Mika will explain further:
 
