@@ -5,8 +5,8 @@ The Maxja Festival hosted in *Sardegna (Italian spelling)* is an annual gatherin
 The founder, Ignacio, and his marketer, Mika will explain further:
 
 
+https://user-images.githubusercontent.com/64858288/175806592-0113bd89-7159-4eab-b953-08838895c64f.mp4
 
-https://user-images.githubusercontent.com/64858288/175806515-790f47c6-b54c-4130-a666-5a96ceab4aca.mov
 
 
 ## Project Aim
@@ -21,6 +21,9 @@ The Dapp has a specific user flow, highlighted in the toolbar itself:
 2. If the user does NOT own any crypto, they can purchase Polygon versions of MATIC and USDC via the On-Ramper
 3. The registered user can approve the $167 USDC to be spent on the minter contract's behalf and mint their ticket!
 4. Once verified on-chain, the NFT's are viewable - this includes ALL Polygon NFTs.
+
+
+https://user-images.githubusercontent.com/64858288/175806515-790f47c6-b54c-4130-a666-5a96ceab4aca.mov
 
 
 ## Screenshots
