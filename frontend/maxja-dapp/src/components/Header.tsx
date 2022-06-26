@@ -56,6 +56,7 @@ const Header = () => {
     color: "#D26C68",
   };
   const logoStyle = {
+    cursor: "pointer",
     width: "200px",
   };
 
@@ -225,7 +226,7 @@ const Header = () => {
         </Toolbar>
       ) : (
         <Toolbar sx={{ flexWrap: "wrap", justifyContent: "space-around" }}>
-          <img src={logo} alt="Maxja Logo" style={logoStyle} />
+          <img src={logo} alt="Maxja Logo" style={logoStyle} onClick={() => window.open("https://empty-shape-3139.on.fleek.co/")} />
 
           <nav>
             <Grid display="inline-flex" gap="50px" alignItems="center">
