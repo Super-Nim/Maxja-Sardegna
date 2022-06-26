@@ -2,7 +2,7 @@
 
 ## Project Aim
 
-This is a Live NFT Minter for the Maxja Festival in 2022, hosted here: [lucky-sun-8549.on.fleek.co](https://lucky-sun-8549.on.fleek.co/) 
+This is a Live NFT Minter for the Maxja Festival in 2022, hosted here: https://lucky-sun-8549.on.fleek.co/
 
 The public website explains the festival and the relevance of the Dapp, hosted here: https://empty-shape-3139.on.fleek.co/ 
 
