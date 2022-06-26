@@ -1,11 +1,15 @@
-# Solidity 
+# Backend
 
-The Solidty smart contracts are included in the /contracts directory.
+The Solidty smart contracts are included in the [/contracts](https://github.com/Super-Nim/Maxja-Sardegna/tree/main/backend/contracts) directory.
 
 The contracts used are:
 
 1. [MaxjaAirdrop](https://github.com/Super-Nim/Maxja-Sardegna/blob/main/backend/contracts/MaxjaAirdrop.sol)
 2. [MaxjaMinter](https://github.com/Super-Nim/Maxja-Sardegna/blob/main/backend/contracts/MaxjaMinter.sol)
+
+The Hardhat's installation, tests, and scripts are [here](# Hardhat)
+
+# Solidity
 
 ## MaxjaAirdrop.sol
 
