@@ -4,8 +4,8 @@ The Solidty smart contracts are included in the /contracts directory.
 
 The contracts used are:
 
-1. MaxjaAirdrop
-2. MaxjaMinter
+1. [MaxjaAirdrop](https://github.com/Super-Nim/Maxja-Sardegna/blob/main/backend/contracts/MaxjaAirdrop.sol)
+2. [MaxjaMinter](https://github.com/Super-Nim/Maxja-Sardegna/blob/main/backend/contracts/MaxjaMinter.sol)
 
 ## MaxjaAirdrop.sol
 
