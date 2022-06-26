@@ -151,7 +151,7 @@ await hre.network.provider.request({
 ```
 
 3. a signer object is defined and used to transfer $167 of USDC (167 x 10**6) to the test account (acc1Address)
-```
+```typescript
 let whaleSigner = ethers.provider.getSigner(USDC_WHALE);
 
     /// @notice get usdc contract's address and pass to MaxjaMaxjaMinter contract
@@ -179,7 +179,7 @@ let whaleSigner = ethers.provider.getSigner(USDC_WHALE);
 
 The fixture below is only used when we want to test the contract from the **user's** perspective, otherwise no fixture is required.
 
-```
+```typescript
 /// @notice set acc1 to default msg.sender and approve minter contract to spend USDC
   const acc1Fixture = async () => {
     minterContract = minterContract.connect(acc1);
