@@ -8,10 +8,10 @@ The public website explains the festival and the relevance of the Dapp.
 
 The Dapp has a specific user flow, highlighted in the toolbar itself:
 
-* 1. The User registers their name and email for the Mandala NFT airdrop
-* 2. If the user does NOT own any crypto, they can purchase Polygon versions of MATIC and USDC via the On-Ramper
-* 3. The registered user can approve the $167 USDC to be spent on the minter contract's behalf and mint their ticket!
-* 4. Once verified on-chain, the NFT's are viewable - this includes ALL Polygon NFTs.
+1. The User registers their name and email for the Mandala NFT airdrop
+2. If the user does NOT own any crypto, they can purchase Polygon versions of MATIC and USDC via the On-Ramper
+3. The registered user can approve the $167 USDC to be spent on the minter contract's behalf and mint their ticket!
+4. Once verified on-chain, the NFT's are viewable - this includes ALL Polygon NFTs.
 
 
 ## Screenshots
