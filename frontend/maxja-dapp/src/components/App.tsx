@@ -1,5 +1,5 @@
 import "../scss/App.scss";
-import { BrowserRouter, Routes, Route, HashRouter } from "react-router-dom";
+import { Routes, Route, HashRouter } from "react-router-dom";
 import { Navigate } from "react-router";
 import { Grid } from "@mui/material";
 import Footer from "./Footer";
