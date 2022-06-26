@@ -242,7 +242,7 @@ async function sendNFTs() {
 
 Back to simplicity. The minter contract only requires the whitelist of addresses and usdcAddress, because the tokenURI is already defined in the ERC1155 solidity smart contract.
 
-```
+```typescript
 async function minter() {
     const MaxjaMinter = await hre.ethers.getContractFactory("MaxjaMinter");
     const usdcAddress = "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174";
