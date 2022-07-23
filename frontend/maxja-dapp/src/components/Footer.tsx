@@ -21,7 +21,7 @@ function Copyright() {
 
 const Footer = () => {
   return (
-    <Grid container justifyContent="center" flexDirection="column" sx={{ background: "black", height: "20vh" }} >
+    <Grid container justifyContent="center" flexDirection="column" sx={{ background: "black", height: "15vh" }} >
       <Grid item display="flex" justifyContent="center" sx={{gap: "10px"}}>
           <a href="https://twitter.com/MaxjaSardegna" rel="noreferrer" target="_blank">
           <img src={twitter} alt="twitter"/>

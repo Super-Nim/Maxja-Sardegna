@@ -25,11 +25,14 @@ import mintNFTH from "./assets/mintNFTH.png";
 import viewNFTsH from "./assets/viewNFTH.png";
 import { useEffect, useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
-import NativeBalance from "./Account/NativeBalance";
 import Polygon from "./Account/Polygon";
 import MetaMaskOnboarding from "@metamask/onboarding";
 import { getEllipsisTxt } from "../helpers/format";
 import { useChain, useMoralis } from "react-moralis";
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+import LocalActivityOutlinedIcon from "@mui/icons-material/LocalActivityOutlined";
+import ImageOutlinedIcon from "@mui/icons-material/ImageOutlined";
+
 
 type LinkProps = {
   name: string;
@@ -270,11 +273,7 @@ const Header = () => {
                   onMouseOver={() => setOnBuyCryptoHover(true)}
                   onMouseLeave={() => setOnBuyCryptoHover(false)}
                 >
-                  <img
-                    src={onBuyCryptoHover ? buyCryptoH : buyCrypto}
-                    alt="home"
-                    style={navImage}
-                  />
+                  <ShoppingCartOutlinedIcon sx={{fontSize: "26px"}}/>
                   BUY CRYPTO
                 </Link>
               </NavLink>
@@ -294,11 +293,8 @@ const Header = () => {
                   onMouseOver={() => setOnMintNFTHover(true)}
                   onMouseLeave={() => setOnMintNFTHover(false)}
                 >
-                  <img
-                    src={onMintNFTHover ? mintNFTH : mintNFT}
-                    alt="home"
-                    style={navImage}
-                  />
+                  <LocalActivityOutlinedIcon sx={{fontSize: "26px", marginTop: "1px"}}/>
+    
                   MINT NFT
                 </Link>
               </NavLink>
@@ -311,19 +307,15 @@ const Header = () => {
                     color: "black",
                     "&:hover": { color: "#D26C68" },
                     display: "inline-flex",
+                    alignItems: "center",
                     textDecoration: "none",
                     fontSize: "18px",
                     width: "fit-content",
-                    alignItems: "baseline",
                   }}
                   onMouseOver={() => setOnViewNFTsHover(true)}
                   onMouseLeave={() => setOnViewNFTsHover(false)}
                 >
-                  <img
-                    src={onViewNFTsHover ? viewNFTsH : viewNFTs}
-                    alt="home"
-                    style={viewNFTImage}
-                  />
+                  <ImageOutlinedIcon sx={{fontSize: "26px", marginBottom: "3px"}}/>
                   <span>VIEW NFTs</span>
                 </Link>
               </NavLink>
