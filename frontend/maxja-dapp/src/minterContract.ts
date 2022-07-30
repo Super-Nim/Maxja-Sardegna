@@ -1,4 +1,4 @@
-export const minterAddress = "0xb9FB77174DDE8Db9C0e7f7D4b8fFF13c9637cccE";
+export const minterAddress = "0x464c4D2e2D4ca2047F0a09C406F249eeeA22571a";
 export const minterABI = [
   {
     "inputs": [

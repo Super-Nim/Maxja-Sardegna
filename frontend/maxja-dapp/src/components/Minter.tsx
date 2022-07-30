@@ -70,13 +70,15 @@ const Minter = () => {
   };
   // TODO: _value might not work with decimals???
   // try doing ethers.utils.formatEther
+  // test value: 100000 = 1x10^5 = 0.1 USDC
+  // production value: 167000000 = 167 * 10^6 = 167 USDC
   const approveUSDC: Web3ExecuteFunctionParameters = {
     abi: usdcABI,
     contractAddress: usdcAddress,
     functionName: "approve",
     params: {
       _spender: minterAddress,
-      _value: 100000,
+      _value: 167000000,
     },
   };
 
