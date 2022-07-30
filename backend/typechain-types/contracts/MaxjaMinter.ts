@@ -33,7 +33,6 @@ export interface MaxjaMinterInterface extends utils.Interface {
     "balanceOfBatch(address[],uint256[])": FunctionFragment;
     "getAllowance()": FunctionFragment;
     "getUsdcBalance()": FunctionFragment;
-    "getWhitelistLength()": FunctionFragment;
     "isApprovedForAll(address,address)": FunctionFragment;
     "mint()": FunctionFragment;
     "name()": FunctionFragment;
@@ -58,7 +57,6 @@ export interface MaxjaMinterInterface extends utils.Interface {
       | "balanceOfBatch"
       | "getAllowance"
       | "getUsdcBalance"
-      | "getWhitelistLength"
       | "isApprovedForAll"
       | "mint"
       | "name"
@@ -91,10 +89,6 @@ export interface MaxjaMinterInterface extends utils.Interface {
   ): string;
   encodeFunctionData(
     functionFragment: "getUsdcBalance",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
-    functionFragment: "getWhitelistLength",
     values?: undefined
   ): string;
   encodeFunctionData(
@@ -170,10 +164,6 @@ export interface MaxjaMinterInterface extends utils.Interface {
   ): Result;
   decodeFunctionResult(
     functionFragment: "getUsdcBalance",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "getWhitelistLength",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -338,8 +328,6 @@ export interface MaxjaMinter extends BaseContract {
 
     getUsdcBalance(overrides?: CallOverrides): Promise<[BigNumber]>;
 
-    getWhitelistLength(overrides?: CallOverrides): Promise<[BigNumber]>;
-
     isApprovedForAll(
       account: PromiseOrValue<string>,
       operator: PromiseOrValue<string>,
@@ -429,8 +417,6 @@ export interface MaxjaMinter extends BaseContract {
 
   getUsdcBalance(overrides?: CallOverrides): Promise<BigNumber>;
 
-  getWhitelistLength(overrides?: CallOverrides): Promise<BigNumber>;
-
   isApprovedForAll(
     account: PromiseOrValue<string>,
     operator: PromiseOrValue<string>,
@@ -519,8 +505,6 @@ export interface MaxjaMinter extends BaseContract {
     getAllowance(overrides?: CallOverrides): Promise<BigNumber>;
 
     getUsdcBalance(overrides?: CallOverrides): Promise<BigNumber>;
-
-    getWhitelistLength(overrides?: CallOverrides): Promise<BigNumber>;
 
     isApprovedForAll(
       account: PromiseOrValue<string>,
@@ -664,8 +648,6 @@ export interface MaxjaMinter extends BaseContract {
 
     getUsdcBalance(overrides?: CallOverrides): Promise<BigNumber>;
 
-    getWhitelistLength(overrides?: CallOverrides): Promise<BigNumber>;
-
     isApprovedForAll(
       account: PromiseOrValue<string>,
       operator: PromiseOrValue<string>,
@@ -755,10 +737,6 @@ export interface MaxjaMinter extends BaseContract {
     getAllowance(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     getUsdcBalance(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    getWhitelistLength(
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
 
     isApprovedForAll(
       account: PromiseOrValue<string>,
