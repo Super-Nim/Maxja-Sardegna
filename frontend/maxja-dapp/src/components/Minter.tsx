@@ -63,11 +63,7 @@ const Minter = () => {
   // TODO: fix contract Rate before deploying to mainnet, here is how
   // const usdcValue = Moralis.Units.Token("100", 18);
 
-  const getWhitelistLength: Web3ExecuteFunctionParameters = {
-    abi: minterABI,
-    contractAddress: minterAddress,
-    functionName: "getWhitelistLength",
-  };
+  
   // TODO: _value might not work with decimals???
   // try doing ethers.utils.formatEther
   // test value: 100000 = 1x10^5 = 0.1 USDC

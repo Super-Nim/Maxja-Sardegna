@@ -1,4 +1,4 @@
-export const minterAddress = "0x464c4D2e2D4ca2047F0a09C406F249eeeA22571a";
+export const minterAddress = "0x819fbD2eFd7EaF62d4805970E3Cd78ff439d5ACE";
 export const minterABI = [
   {
     "inputs": [
@@ -217,19 +217,6 @@ export const minterABI = [
   {
     "inputs": [],
     "name": "getUsdcBalance",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "getWhitelistLength",
     "outputs": [
       {
         "internalType": "uint256",
